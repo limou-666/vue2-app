@@ -1,14 +1,18 @@
 body {
   margin: 0;
   font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-  background: #f8f9fa;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 60%, rgba(255, 235, 238, 0.85) 100%), url('https://img.alicdn.com/imgextra/i2/2200704182017/O1CN01Qn1ytF1Q7r6pujISv_!!2200704182017.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 // 桌面端（大于1200px）
 @media (min-width: 1200px) {
   body {
     font-size: 18px;
-    background: #f8f9fa;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 60%, rgba(255, 235, 238, 0.85) 100%), url('https://img.alicdn.com/imgextra/i2/2200704182017/O1CN01Qn1ytF1Q7r6pujISv_!!2200704182017.jpg');
   }
 }
 
@@ -16,7 +20,7 @@ body {
 @media (min-width: 768px) and (max-width: 1199px) {
   body {
     font-size: 16px;
-    background: #f0f4f8;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97) 60%, rgba(255, 235, 238, 0.88) 100%), url('https://img.alicdn.com/imgextra/i2/2200704182017/O1CN01Qn1ytF1Q7r6pujISv_!!2200704182017.jpg');
   }
 }
 
@@ -24,6 +28,6 @@ body {
 @media (max-width: 767px) {
   body {
     font-size: 15px;
-    background: #fff;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 60%, rgba(255, 235, 238, 0.92) 100%), url('https://img.alicdn.com/imgextra/i2/2200704182017/O1CN01Qn1ytF1Q7r6pujISv_!!2200704182017.jpg');
   }
 }
