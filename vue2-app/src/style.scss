@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  background: #f8f9fa;
+}
+
+// 桌面端（大于1200px）
+@media (min-width: 1200px) {
+  body {
+    font-size: 18px;
+    background: #f8f9fa;
+  }
+}
+
+// 平板端（大于768px且小于1200px）
+@media (min-width: 768px) and (max-width: 1199px) {
+  body {
+    font-size: 16px;
+    background: #f0f4f8;
+  }
+}
+
+// 手机端（小于768px）
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+    background: #fff;
+  }
+}
