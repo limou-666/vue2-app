@@ -19,7 +19,15 @@
           <td>¥3,999</td>
           <td>¥12,999</td>
           <td>3</td>
-          <td><button class="buy-btn" @click="openModal">立即抢占</button></td>
+          <td><button
+            class="buy-btn cta-mousemove"
+            @mousemove="onMove"
+            @mouseleave="onLeave"
+            @click="openModal"
+            ref="payBtn"
+          >
+            <span class="cta-text" :style="ctaTextStyle">立即抢占</span>
+          </button></td>
         </tr>
         <tr>
           <td>早鸟先锋</td>
@@ -65,7 +73,17 @@ export default {
       payType: null,
       countdown: '',
       timer: null,
-      targetTime: new Date('2025-07-25T00:00:00').getTime()
+      targetTime: new Date('2025-07-25T00:00:00').getTime(),
+      payOffset: { x: 0, y: 0 },
+      payActive: false
+    }
+  },
+  computed: {
+    ctaTextStyle() {
+      if (!this.payActive) return { transform: 'translate(0,0)' };
+      return {
+        transform: `translate(${this.payOffset.x}px, ${this.payOffset.y}px)`
+      };
     }
   },
   mounted() {
@@ -95,6 +113,24 @@ export default {
       diff -= minutes * 1000 * 60;
       const seconds = Math.floor(diff / 1000);
       this.countdown = `${days}天 ${hours.toString().padStart(2,'0')}小时${minutes.toString().padStart(2,'0')}分${seconds.toString().padStart(2,'0')}秒`;
+    },
+    onMove(e) {
+      const btn = this.$refs.payBtn;
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const dx = x - rect.width / 2;
+      const dy = y - rect.height / 2;
+      const max = Math.min(rect.width, rect.height) / 4;
+      this.payOffset = {
+        x: Math.max(-max, Math.min(max, dx / 2)),
+        y: Math.max(-max, Math.min(max, dy / 2))
+      };
+      this.payActive = true;
+    },
+    onLeave() {
+      this.payOffset = { x: 0, y: 0 };
+      this.payActive = false;
     }
   }
 }
@@ -221,7 +257,7 @@ export default {
   border-right: none;
 }
 .buy-btn {
-  background: #ff9800;
+  background: linear-gradient(90deg, rgba(255,152,0,0.75) 0%, rgba(216,67,21,0.75) 100%);
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -230,6 +266,8 @@ export default {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s;
+  overflow: hidden;
+  position: relative;
 }
 .buy-btn.disabled,
 .buy-btn:disabled {
@@ -237,6 +275,15 @@ export default {
   color: #aaa;
   cursor: not-allowed;
   box-shadow: none;
+}
+.cta-text {
+  display: inline-block;
+  transition: transform 0.18s cubic-bezier(.4,1.6,.6,1);
+  will-change: transform;
+}
+.buy-btn:hover {
+  border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1;
+  box-shadow: 0 6px 32px 0 rgba(255,152,0,0.18), 0 0 0 10px rgba(255,224,240,0.18);
 }
 .pay-modal {
   position: fixed;

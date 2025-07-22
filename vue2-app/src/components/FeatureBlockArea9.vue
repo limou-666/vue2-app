@@ -9,7 +9,14 @@
           天使合伙人席位即将售罄，价格马上上涨。立即行动，锁定骨折优惠！
         </div>
       </div>
-      <button class="area9-cta" @click="scrollToPay">立即抢占最后席位，告别采购赌博！</button>
+      <button class="area9-cta cta-mousemove"
+        @mousemove="onMove"
+        @mouseleave="onLeave"
+        @click="scrollToPay"
+        ref="ctaBtn"
+      >
+        <span class="cta-text" :style="ctaTextStyle">立即抢占最后席位，告别采购赌博！</span>
+      </button>
     </div>
   </section>
 </template>
@@ -17,12 +24,44 @@
 <script>
 export default {
   name: 'FeatureBlockArea9',
+  data() {
+    return {
+      ctaOffset: { x: 0, y: 0 },
+      ctaActive: false
+    }
+  },
+  computed: {
+    ctaTextStyle() {
+      if (!this.ctaActive) return { transform: 'translate(0,0)' };
+      return {
+        transform: `translate(${this.ctaOffset.x}px, ${this.ctaOffset.y}px)`
+      };
+    }
+  },
   methods: {
     scrollToPay() {
       const area5 = document.getElementById('area5');
       if (area5) {
         area5.scrollIntoView({ behavior: 'smooth' });
       }
+    },
+    onMove(e) {
+      const btn = this.$refs.ctaBtn;
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const dx = x - rect.width / 2;
+      const dy = y - rect.height / 2;
+      const max = Math.min(rect.width, rect.height) / 4;
+      this.ctaOffset = {
+        x: Math.max(-max, Math.min(max, dx / 2)),
+        y: Math.max(-max, Math.min(max, dy / 2))
+      };
+      this.ctaActive = true;
+    },
+    onLeave() {
+      this.ctaOffset = { x: 0, y: 0 };
+      this.ctaActive = false;
     }
   }
 }
@@ -79,7 +118,7 @@ export default {
   line-height: 1.5;
 }
 .area9-cta {
-  background: linear-gradient(90deg, #ff9800 0%, #d84315 100%);
+  background: linear-gradient(90deg, rgba(255,152,0,0.75) 0%, rgba(216,67,21,0.75) 100%);
   color: #fff;
   font-size: 1.7rem;
   font-weight: bold;
@@ -91,10 +130,17 @@ export default {
   margin-top: 1.2em;
   transition: background 0.2s, box-shadow 0.2s;
   letter-spacing: 0.02em;
+  overflow: hidden;
+  position: relative;
+}
+.cta-text {
+  display: inline-block;
+  transition: transform 0.18s cubic-bezier(.4,1.6,.6,1);
+  will-change: transform;
 }
 .area9-cta:hover {
-  background: linear-gradient(90deg, #d84315 0%, #ff9800 100%);
-  box-shadow: 0 4px 24px rgba(255,152,0,0.18);
+  border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1;
+  box-shadow: 0 6px 32px 0 rgba(255,152,0,0.18), 0 0 0 10px rgba(255,224,240,0.18);
 }
 @media (max-width: 900px) {
   .feature-block {
