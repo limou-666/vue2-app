@@ -19,6 +19,7 @@
       :columns="3"
     />
     <FeatureBlockArea4 />
+    <FeatureBlockArea5 />
     <AppFooter />
   </div>
 </template>
@@ -29,11 +30,12 @@ import FeatureBlockArea1 from './components/FeatureBlockArea1.vue'
 import FeatureBlockArea2 from './components/FeatureBlockArea2.vue'
 import FeatureBlockArea3 from './components/FeatureBlockArea3.vue'
 import FeatureBlockArea4 from './components/FeatureBlockArea4.vue'
+import FeatureBlockArea5 from './components/FeatureBlockArea5.vue'
 import AppFooter from './components/AppFooter.vue'
 
 export default {
   name: 'App',
-  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, FeatureBlockArea4, AppFooter },
+  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, FeatureBlockArea4, FeatureBlockArea5, AppFooter },
   data() {
     return {
       feature1Items: [

@@ -3,13 +3,25 @@
     <div class="feature-title-bg">
       <h2 class="section-title">眼见为实：一份真实的“决胜单”分析报告</h2>
     </div>
-    <div class="section-block-content">
-      <div class="area4-flex">
-        <div class="area4-img-half">
-          <img src="/截图.jpg" alt="分析报告截图" class="report-img" />
-        </div>
-        <div class="area4-desc-half">
-          <!-- 这里可放说明、标注等内容 -->
+    <div class="section-block-content" style="position:relative;">
+      <!-- 直线箭头1：指向标题 -->
+      <svg class="arrow-absolute" style="left: calc(50% - 410px); top: 180px;" width="120" height="40" viewBox="0 0 120 40">
+        <line x1="110" y1="20" x2="20" y2="20" stroke="#ff2d2d" stroke-width="7" stroke-linecap="round"/>
+        <polygon points="0,20 30,10 30,30" fill="#ff2d2d" />
+      </svg>
+      <!-- 直线箭头2：指向风险关键词 -->
+      <svg class="arrow-absolute" style="left: calc(50% - 410px); top: 380px;" width="120" height="40" viewBox="0 0 120 40">
+        <line x1="110" y1="20" x2="20" y2="20" stroke="#ff2d2d" stroke-width="7" stroke-linecap="round"/>
+        <polygon points="0,20 30,10 30,30" fill="#ff2d2d" />
+      </svg>
+      <!-- 直线箭头3：指向78分 -->
+      <svg class="arrow-absolute" style="left: calc(50% - 410px); top: 500px;" width="120" height="40" viewBox="0 0 120 40">
+        <line x1="110" y1="20" x2="20" y2="20" stroke="#ff2d2d" stroke-width="7" stroke-linecap="round"/>
+        <polygon points="0,20 30,10 30,30" fill="#ff2d2d" />
+      </svg>
+      <div class="area4-img-block-large">
+        <div class="img-annotate-wrap">
+          <img src="/截图.png" alt="分析报告截图" class="report-img" />
         </div>
       </div>
     </div>
@@ -45,30 +57,29 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
-.area4-flex {
+.area4-img-block-large {
   width: 100%;
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: 1.2rem;
-}
-.area4-img-half, .area4-desc-half {
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 0;
-}
-.area4-img-half {
   background: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 0.5rem;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+.img-annotate-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
 .report-img {
   width: 100%;
@@ -78,20 +89,18 @@ export default {
   border-radius: 8px;
   object-fit: contain;
 }
-.area4-desc-half {
-  background: #fffde7;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(255,193,7,0.08);
-  padding: 0.5rem;
-  min-height: 0;
+.arrow-absolute {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
 }
 @media (max-width: 900px) {
-  .area4-flex {
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-  .area4-img-half, .area4-desc-half {
+  .area4-img-block-large {
+    max-width: 98vw;
     padding: 0.2rem;
+  }
+  .arrow-absolute {
+    display: none;
   }
 }
 </style> 

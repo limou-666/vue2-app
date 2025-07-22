@@ -1,5 +1,5 @@
 <template>
-  <section class="area8">
+  <section class="area5 area8">
     <div class="risk-badge">
       <b>我们郑重承诺：</b>购买后30天内，若因我们的模板或指导问题导致您无法成功部署，我们将全额退款！
     </div>
@@ -26,13 +26,14 @@ export default {
 }
 </script>
 <style scoped>
-.area8 {
+.area5.area8 {
   width: 90vw;
   margin: 0 auto 2.2rem auto;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   padding: 1.5rem 1rem;
+  border: 1.5px solid #f0f0f0;
 }
 .risk-badge {
   background: #e3f2fd;

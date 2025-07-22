@@ -1,5 +1,5 @@
 <template>
-  <section class="area7">
+  <section class="area5 area7">
     <h2 class="area-title">我是谁？为什么你可以信任我？</h2>
     <div class="founder-info">
       <img src="/path/to/founder.jpg" alt="创始人照片" class="founder-photo" />
@@ -20,13 +20,14 @@ export default {
 }
 </script>
 <style scoped>
-.area7 {
+.area5.area7 {
   width: 90vw;
   margin: 0 auto 2.2rem auto;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   padding: 1.5rem 1rem;
+  border: 1.5px solid #f0f0f0;
 }
 .area-title {
   font-size: 1.3rem;

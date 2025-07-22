@@ -1,5 +1,5 @@
 <template>
-  <section class="area6">
+  <section class="area5 area6">
     <h2 class="area-title">今天下单，您将获得总价值超过 ¥15,000 的大礼包！</h2>
     <ul class="gift-list">
       <li>✓ “决胜单”N8N Agent工作流模板 (价值 ¥12,999)</li>
@@ -16,13 +16,14 @@ export default {
 }
 </script>
 <style scoped>
-.area6 {
+.area5.area6 {
   width: 90vw;
   margin: 0 auto 2.2rem auto;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   padding: 1.5rem 1rem;
+  border: 1.5px solid #f0f0f0;
 }
 .area-title {
   font-size: 1.3rem;

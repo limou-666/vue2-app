@@ -1,5 +1,5 @@
 <template>
-  <section class="area9">
+  <section class="area5 area9">
     <div class="area9-content">
       <p>一次错误的补货决策，损失的可能就是几万甚至几十万。而今天，只需一笔小小的投资，就能拥有一个永不疲倦的AI决策大脑。</p>
       <p>天使合伙人席位即将售罄，价格马上上涨。立即行动，锁定骨折优惠！</p>
@@ -13,13 +13,14 @@ export default {
 }
 </script>
 <style scoped>
-.area9 {
+.area5.area9 {
   width: 90vw;
   margin: 0 auto 2.2rem auto;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   padding: 1.5rem 1rem;
+  border: 1.5px solid #f0f0f0;
   text-align: center;
 }
 .area9-content p {
