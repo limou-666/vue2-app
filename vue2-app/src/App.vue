@@ -22,6 +22,7 @@
     <FeatureBlockArea5 />
     <FeatureBlockArea6 />
     <FeatureBlockArea7 />
+    <FeatureBlockArea8 />
     <AppFooter />
   </div>
 </template>
@@ -35,11 +36,12 @@ import FeatureBlockArea4 from './components/FeatureBlockArea4.vue'
 import FeatureBlockArea5 from './components/FeatureBlockArea5.vue'
 import FeatureBlockArea6 from './components/FeatureBlockArea6.vue'
 import FeatureBlockArea7 from './components/FeatureBlockArea7.vue'
+import FeatureBlockArea8 from './components/FeatureBlockArea8.vue'
 import AppFooter from './components/AppFooter.vue'
 
 export default {
   name: 'App',
-  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, FeatureBlockArea4, FeatureBlockArea5, FeatureBlockArea6, FeatureBlockArea7, AppFooter },
+  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, FeatureBlockArea4, FeatureBlockArea5, FeatureBlockArea6, FeatureBlockArea7, FeatureBlockArea8, AppFooter },
   data() {
     return {
       feature1Items: [
