@@ -19,7 +19,9 @@
       :columns="4"
     />
     <FeatureBlockArea4 />
-    <FeatureBlockArea5 id="area5" />
+    <FeatureBlockArea5 />
+    <FeatureBlockArea6 />
+    <FeatureBlockArea7 />
     <AppFooter />
   </div>
 </template>
@@ -31,11 +33,13 @@ import FeatureBlockArea2 from './components/FeatureBlockArea2.vue'
 import FeatureBlockArea3 from './components/FeatureBlockArea3.vue'
 import FeatureBlockArea4 from './components/FeatureBlockArea4.vue'
 import FeatureBlockArea5 from './components/FeatureBlockArea5.vue'
+import FeatureBlockArea6 from './components/FeatureBlockArea6.vue'
+import FeatureBlockArea7 from './components/FeatureBlockArea7.vue'
 import AppFooter from './components/AppFooter.vue'
 
 export default {
   name: 'App',
-  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, FeatureBlockArea4, FeatureBlockArea5, AppFooter },
+  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, FeatureBlockArea4, FeatureBlockArea5, FeatureBlockArea6, FeatureBlockArea7, AppFooter },
   data() {
     return {
       feature1Items: [
@@ -50,10 +54,10 @@ export default {
         { label: '90%效率提升', text: '从数小时的人工分析，到3分钟的自动化报告。' }
       ],
       feature3Items: [
-        { label: '全域数据专员', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
-        { label: 'AI洞察分析师', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
-        { label: '资深风险评估官', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' },
-        { label: '首席汇报秘书', text: '复杂数据一键生成可视化报告，决策更高效。' }
+        { label: '全链路追踪', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
+        { label: '智能洞察', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
+        { label: '高效协同', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' },
+        { label: '一键报告', text: '复杂数据一键生成可视化报告，决策更高效。' }
       ]
     }
   },

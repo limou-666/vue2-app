@@ -29,6 +29,15 @@ export default {
 }
 </script>
 <style scoped>
+.feature-block {
+  margin: 2.5em auto;
+  border: 3px solid transparent;
+  border-radius: 18px;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
+  box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
+}
 .feature-block[data-columns='4'] .section-block-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
