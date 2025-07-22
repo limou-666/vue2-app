@@ -1,229 +1,129 @@
 <template>
-  <section class="feature-block" data-columns="3">
+  <section class="feature-block" :data-columns="columns">
     <div class="feature-title-bg">
       <h2 class="section-title">{{ title }}</h2>
     </div>
     <div class="section-block-content">
-      <div class="section-block-grid" :style="gridStyle">
-        <div v-for="(item, idx) in items" :key="idx" class="card">
+      <div class="section-block-grid">
+        <div class="card" v-for="(item, idx) in items" :key="idx">
           <div class="card-inner">
-            <div class="card-label-wrap">
-              <span class="card-label">{{ item.label }}</span>
-            </div>
-            <div class="card-text-wrap">
-              <span class="card-text" :title="item.text">{{ item.text }}</span>
-            </div>
+            <div class="card-label">{{ item.label }}</div>
+            <div class="card-text">{{ item.text }}</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
-
 <script>
 export default {
   name: 'FeatureBlockArea3',
   props: {
     title: String,
-    items: Array, // [{label, text}]
+    items: Array,
     columns: {
       type: Number,
-      default: 3
-    }
-  },
-  computed: {
-    gridStyle() {
-      return {
-        display: 'grid',
-        width: '100%',
-        gap: '1.2rem',
-        'grid-template-columns': `repeat(${this.columns}, 1fr)`
-      }
+      default: 4
     }
   }
 }
 </script>
-
 <style scoped>
-.feature-title-bg {
-  width: 90vw;
-  min-width: 320px;
-  max-width: 100vw;
-  margin: 0 auto 0.7rem auto;
-  background: linear-gradient(90deg, rgba(220,38,38,0.8) 0%, rgba(255,87,34,0.8) 100%);
-  border-radius: 8px 8px 0 0;
-  padding: 1.1rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-.section-block-content {
-  width: 90vw;
-  min-width: 320px;
-  max-width: 100vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.section-block-grid {
-  width: 100%;
+.feature-block[data-columns='4'] .section-block-grid {
   display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
-  margin-bottom: 1.2rem;
-  justify-items: center;
-  align-items: center;
 }
-.feature-block[data-columns='3'] .section-block-grid .card {
-  height: 160px;
+.feature-block[data-columns='4'] .section-block-grid .card {
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-  position: relative;
+  box-shadow: 0 1px 3px rgba(255,152,0,0.06);
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  margin: 0;
+  padding: 0.01em 0.05em;
 }
-.feature-block[data-columns='3'] .section-block-grid .card-inner {
+.feature-block[data-columns='4'] .section-block-grid .card-inner {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-  text-align: left;
-  box-sizing: border-box;
-  position: static;
-  padding-top: 0;
-}
-.feature-block[data-columns='3'] .section-block-grid .card-label-wrap {
-  background: #fff8f8;
-  padding-left: 0;
-  padding-bottom: 0.2em;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  display: flex;
-  height: 50%;
-  padding-top: 8px;
-  margin-top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.01em;
 }
-.feature-block[data-columns='3'] .section-block-grid .card-label-wrap::after {
-  display: none;
-}
-.feature-block[data-columns='3'] .section-block-grid .card-text-wrap {
-  background: #f8fff8;
-  margin-top: -8px;
-  align-items: flex-start;
-  padding-left: 0;
-  padding-top: 0.2em;
-  height: 50%;
-  display: flex;
-  justify-content: flex-start;
-}
-.feature-block[data-columns='3'] .section-block-grid .card-label {
-  font-size: 1.6rem;
-  color: #111;
+.feature-block[data-columns='4'] .section-block-grid .card-label {
+  font-size: 1.35rem;
   font-weight: bold;
-  margin: 0 auto;
+  color: #ff9800;
   text-align: center;
-  width: 95%;
-  display: block;
-  box-sizing: border-box;
-  max-width: 95%;
-  background: none;
-  border-radius: 8px;
-  padding: 0.2em 0;
-  transition: font-size 0.2s, background 0.2s, padding 0.2s;
+  margin-bottom: 0.5em;
+  margin-top: 1.2em;
+  line-height: 1.2;
 }
-@media (max-width: 600px) {
-  .feature-block[data-columns='3'] .section-block-grid .card-label {
-    font-size: 1.1rem;
-    background: #f5f5f5;
-    color: #111;
-    font-weight: bold;
-    width: 90%;
-    max-width: 90%;
-    border-radius: 8px;
-    padding: 0.4em 0;
-    margin: 0 auto;
-    text-align: center;
-    display: block;
-  }
-}
-.feature-block[data-columns='3'] .section-block-grid .card-text {
+.feature-block[data-columns='4'] .section-block-grid .card-text {
   font-size: 0.95rem;
   color: #666;
-  margin: 0;
-  text-align: left;
-  width: 100%;
-  white-space: pre-line;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0 0.2em;
   word-break: break-all;
-  overflow-y: auto;
-  padding: 0.6em 1em 0.6em 1em;
-  background: #fff;
-  border-radius: 6px;
+  white-space: pre-line;
   box-sizing: border-box;
-  height: 100%;
-  display: block;
-}
-.feature-block {
-  margin-bottom: 2.2rem;
-}
-.feature-block:last-of-type {
-  margin-bottom: 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (max-width: 900px) {
-  .feature-block[data-columns='3'] .section-block-grid {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: repeat(3, 1fr);
+  .feature-block[data-columns='4'] .section-block-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr);
     gap: 0.18rem !important;
   }
 }
 @media (max-width: 600px) {
-  .feature-block[data-columns='3'] .section-block-grid .card {
-    height: 80px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    padding: 0.2em 0.3em;
+  .feature-block[data-columns='4'] .section-block-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(4, 1fr) !important;
+    gap: 0.18rem !important;
   }
-  .feature-block[data-columns='3'] .section-block-grid .card-label {
-    font-size: 1rem;
-    padding: 0.2em 0;
-    width: 95%;
-    max-width: 95%;
-  }
-  .feature-block[data-columns='3'] .section-block-grid .card-text {
-    font-size: 0.8rem;
-    padding: 0.3em 0.5em;
-    height: auto;
-    min-height: 1.5em;
-    max-height: none;
-    overflow-y: visible;
-    white-space: pre-line;
-  }
-  .feature-block[data-columns='3'] .section-block-grid .card:first-child {
-    height: 110px;
-  }
-}
-
-@media (max-width: 900px) {
-  .section-block-grid {
-    gap: 0.12rem !important;
-  }
-}
-@media (max-width: 600px) {
-  .section-block-grid {
-    gap: 0.08rem !important;
-  }
-  .section-block-grid .card {
+  .feature-block[data-columns='4'] .section-block-grid .card {
+    height: 50px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(255,152,0,0.06) !important;
+    padding: 0.01em 0.05em !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1 !important;
     margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
-}
-@media (max-width: 600px) {
-  .section-block-grid .card {
-    height: 100px !important;
-    margin: 0 !important;
+  .feature-block[data-columns='4'] .section-block-grid .card-inner {
+    font-size: 0.95rem !important;
+    padding: 0 0.01em !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
   }
-  .feature-block[data-columns='3'] .section-block-grid .card-text {
-    min-height: 2.5em;
-    padding: 0.5em 0.7em;
+  .feature-block[data-columns='4'] .section-block-grid .card-label {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.3em !important;
+    margin-top: 0.5em !important;
+  }
+  .feature-block[data-columns='4'] .section-block-grid .card-text {
+    font-size: 0.8rem !important;
+    margin: 0 0.1em !important;
+    width: 98% !important;
   }
 }
 </style> 

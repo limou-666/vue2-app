@@ -4,7 +4,7 @@
     <div class="header-content">
       <h1 class="main-title">告别采购赌博，你的亚马逊专属AI决策大脑</h1>
       <p class="sub-title">在下一次补货前，让“决胜单”Agent分析所有风险，用数据告诉你这批货到底该不该下单。</p>
-      <button class="header-btn">立即查看「限时团购」方案</button>
+      <button class="header-btn" @click="$emit('scrollToArea5')">立即体验</button>
     </div>
   </header>
 </template>

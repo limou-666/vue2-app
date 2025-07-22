@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <HeaderBlock />
+    <HeaderBlock @scrollToArea5="scrollToArea5" />
     <FeatureBlockArea1
       title="你是否也曾因为一次错误的补货，亏掉数万利润？"
       :items="feature1Items"
@@ -16,10 +16,10 @@
     <FeatureBlockArea3
       title="数据驱动，决胜未来"
       :items="feature3Items"
-      :columns="3"
+      :columns="4"
     />
     <FeatureBlockArea4 />
-    <FeatureBlockArea5 />
+    <FeatureBlockArea5 id="area5" />
     <AppFooter />
   </div>
 </template>
@@ -46,14 +46,23 @@ export default {
       ],
       feature2Items: [
         { label: '价值1: 100%数据驱动', text: '告别直觉，让每一个采购决策都有据可依。' },
-        { label: '风险预警', text: '自动监控差评和痛点，在问题爆发前发出警报。' },
-        { label: '高效分析', text: '从数小时的人工分析，到3分钟的自动化报告。' }
+        { label: '24/7风险预警', text: '自动监控差评和痛点，在问题爆发前发出警报。' },
+        { label: '90%效率提升', text: '从数小时的人工分析，到3分钟的自动化报告。' }
       ],
       feature3Items: [
-        { label: '全链路追踪', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
-        { label: '智能洞察', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
-        { label: '高效协同', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' }
+        { label: '全域数据专员', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
+        { label: 'AI洞察分析师', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
+        { label: '资深风险评估官', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' },
+        { label: '首席汇报秘书', text: '复杂数据一键生成可视化报告，决策更高效。' }
       ]
+    }
+  },
+  methods: {
+    scrollToArea5() {
+      const area5 = document.getElementById('area5');
+      if (area5) {
+        area5.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 }

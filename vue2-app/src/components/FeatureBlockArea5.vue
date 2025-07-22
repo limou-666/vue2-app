@@ -1,5 +1,5 @@
 <template>
-  <section class="area5">
+  <section class="feature-block" id="area5">
     <h2 class="area-title">加入我们，成为第一批用AI优化库存的聪明卖家（仅限本微信群）</h2>
     <div class="area-subtitle">阶梯团购，越早越优惠，名额售罄价格立即上涨！</div>
     <div class="countdown">距早鸟价结束仅剩：<span class="countdown-time">02天 14:30:15</span></div>
