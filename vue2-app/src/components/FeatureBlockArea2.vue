@@ -127,6 +127,25 @@ export default {
   display: block;
   box-sizing: border-box;
   max-width: 95%;
+  background: none;
+  border-radius: 8px;
+  padding: 0.2em 0;
+  transition: font-size 0.2s, background 0.2s, padding 0.2s;
+}
+@media (max-width: 600px) {
+  .feature-block[data-columns='3'] .section-block-grid .card-label {
+    font-size: 1.1rem;
+    background: #f5f5f5;
+    color: #111;
+    font-weight: bold;
+    width: 90%;
+    max-width: 90%;
+    border-radius: 8px;
+    padding: 0.4em 0;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+  }
 }
 .feature-block[data-columns='3'] .section-block-grid .card-text {
   font-size: 0.95rem;
@@ -149,5 +168,35 @@ export default {
 }
 .feature-block:last-of-type {
   margin-bottom: 0;
+}
+@media (max-width: 900px) {
+  .feature-block[data-columns='3'] .section-block-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.7rem;
+  }
+}
+@media (max-width: 600px) {
+  .feature-block[data-columns='3'] .section-block-grid .card {
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    padding: 0.2em 0.3em;
+  }
+  .feature-block[data-columns='3'] .section-block-grid .card-label {
+    font-size: 1rem;
+    padding: 0.2em 0;
+    width: 95%;
+    max-width: 95%;
+  }
+  .feature-block[data-columns='3'] .section-block-grid .card-text {
+    font-size: 0.8rem;
+    padding: 0.3em 0.5em;
+    height: auto;
+    min-height: 1.5em;
+    max-height: none;
+    overflow-y: visible;
+    white-space: pre-line;
+  }
 }
 </style> 
