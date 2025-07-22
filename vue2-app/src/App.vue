@@ -1,20 +1,20 @@
 <template>
   <div class="container">
     <HeaderBlock />
-    <FeatureBlock
+    <FeatureBlockArea1
       title="你是否也曾因为一次错误的补货，亏掉数万利润？"
       :items="feature1Items"
       bottom-title="真实案例"
       bottom-desc="深圳卖家张总的教训：一款月销3000件的爆款，因未及时发现材料相关的差评增多，盲目追单5000件，最终导致差评爆发，链接被限制，库存价值30万的货砸在手里..."
       :columns="4"
     />
-    <FeatureBlock
+    <FeatureBlockArea2
       title="是时候改变了！隆重介绍：“决胜单”——您的AI采购决策顾问"
       :items="feature2Items"
       :columns="3"
     />
-    <FeatureBlock
-      title="数据驱动，决胜未来"
+    <FeatureBlockArea3
+      title="四位一体，揭秘“决胜单”如何为您保驾护航"
       :items="feature3Items"
       :columns="3"
     />
@@ -24,12 +24,14 @@
 
 <script>
 import HeaderBlock from './components/HeaderBlock.vue'
-import FeatureBlock from './components/FeatureBlock.vue'
+import FeatureBlockArea1 from './components/FeatureBlockArea1.vue'
+import FeatureBlockArea2 from './components/FeatureBlockArea2.vue'
+import FeatureBlockArea3 from './components/FeatureBlockArea3.vue'
 import AppFooter from './components/AppFooter.vue'
 
 export default {
   name: 'App',
-  components: { HeaderBlock, FeatureBlock, AppFooter },
+  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, AppFooter },
   data() {
     return {
       feature1Items: [
@@ -40,13 +42,13 @@ export default {
       ],
       feature2Items: [
         { label: '价值1: 100%数据驱动', text: '告别直觉，让每一个采购决策都有据可依。' },
-        { label: '风险预警', text: '自动监控差评和痛点，在问题爆发前发出警报。' },
-        { label: '高效分析', text: '从数小时的人工分析，到3分钟的自动化报告。' }
+        { label: '价值2: 24/7风险预警', text: '自动监控差评和痛点，在问题爆发前发出警报。' },
+        { label: '价值3: 90%效率提升', text: '从数小时的人工分析，到3分钟的自动化报告。' }
       ],
       feature3Items: [
-        { label: '全链路追踪', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
-        { label: '智能洞察', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
-        { label: '高效协同', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' }
+        { label: '全链路追全域数据专员踪', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
+        { label: 'AI洞察分析师 ', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
+        { label: '首席汇报秘书', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' }
       ]
     }
   }

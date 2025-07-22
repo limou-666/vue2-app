@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'FeatureBlock',
+  name: 'FeatureBlockArea1',
   props: {
     title: String,
     items: Array, // [{icon, label, text}]
@@ -181,38 +181,5 @@ export default {
 }
 .feature-block:last-of-type {
   margin-bottom: 0;
-}
-.feature-block[data-columns='3'] .section-block-grid .card {
-  height: 160px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-  position: relative;
-}
-.feature-block[data-columns='3'] .section-block-grid .card-label {
-  position: absolute;
-  top: 12px;
-  left: 16px;
-  font-size: 1.15rem;
-  color: #ff2d2d;
-  font-weight: bold;
-  margin: 0;
-  background: #fff8f8;
-  padding: 0.2em 1em;
-  border-radius: 16px;
-  z-index: 2;
-}
-.feature-block[data-columns='3'] .section-block-grid .card-text {
-  position: absolute;
-  left: 50%;
-  bottom: 12px;
-  transform: translateX(-50%);
-  font-size: 1.1rem;
-  color: #666;
-  margin: 0;
-  text-align: center;
-  width: 90%;
-  z-index: 1;
 }
 </style> 
