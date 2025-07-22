@@ -1,31 +1,57 @@
 <template>
   <section class="feature-block" id="area5">
-    <h2 class="area-title">加入我们，成为第一批用AI优化库存的聪明卖家（仅限本微信群）</h2>
-    <div class="area-subtitle">阶梯团购，越早越优惠，名额售罄价格立即上涨！</div>
-    <div class="countdown">距早鸟价结束仅剩：<span class="countdown-time">02天 14:30:15</span></div>
-    <table class="price-table">
-      <tr>
-        <th>阶段</th><th>现价</th><th>原价</th><th>剩余名额</th><th></th>
-      </tr>
-      <tr>
-        <td>天使合伙人</td><td>¥3,999</td><td>¥12,999</td><td><span class="quota">3</span></td>
-        <td><button class="btn-primary" @click="showPay('angel')">立即抢占</button></td>
-      </tr>
-      <tr>
-        <td>早鸟先锋</td><td>¥5,999</td><td>¥12,999</td><td><span class="quota">11</span></td>
-        <td><button class="btn-secondary" :disabled="!angelSoldOut">排队预定</button></td>
-      </tr>
-      <tr>
-        <td>标准团购</td><td>¥7,999</td><td>¥12,999</td><td><span class="quota">15</span></td>
-        <td><button class="btn-secondary" disabled>排队预定</button></td>
-      </tr>
-    </table>
-    <div v-if="showPayModal" class="pay-modal">
+    <div class="area5-header">
+      <div class="area5-title">加入我们，成为第一批用AI优化库存的聪明卖家（仅限本微信群）</div>
+      <div class="area5-subtitle">阶梯团购，越早越优惠，名额售罄价格立即上涨！</div>
+      <div class="area5-countdown">限时抢购倒计时：<span>{{ countdown }}</span></div>
+    </div>
+    <div class="area5-table-wrap">
+      <table class="price-table">
+        <tr>
+          <th>阶段</th>
+          <th>现价</th>
+          <th>原价</th>
+          <th>剩余名额</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>天使合伙人</td>
+          <td>¥3,999</td>
+          <td>¥12,999</td>
+          <td>3</td>
+          <td><button class="buy-btn" @click="openModal">立即抢占</button></td>
+        </tr>
+        <tr>
+          <td>早鸟先锋</td>
+          <td>¥5,999</td>
+          <td>¥12,999</td>
+          <td>11</td>
+          <td><button class="buy-btn disabled" disabled>排队预定</button></td>
+        </tr>
+        <tr>
+          <td>标准团购</td>
+          <td>¥7,999</td>
+          <td>¥12,999</td>
+          <td>15</td>
+          <td><button class="buy-btn disabled" disabled>排队预定</button></td>
+        </tr>
+      </table>
+    </div>
+    <div v-if="showModal" class="pay-modal">
       <div class="pay-modal-content">
-        <h3>请扫码支付 ¥3,999</h3>
-        <img src="/path/to/qrcode.jpg" alt="收款二维码" class="pay-qrcode" />
-        <div class="pay-tip">支付后请截图，并添加客服微信 <b>[微信号]</b>，凭截图拉您进入专属服务群并安排部署。</div>
-        <button class="pay-close" @click="showPayModal=false">关闭</button>
+        <h3 class="pay-title">请选择支付方式</h3>
+        <div v-if="!payType" class="pay-type-btns">
+          <button class="pay-type-btn wx" @click="payType='wx'">微信支付</button>
+          <button class="pay-type-btn zfb" @click="payType='zfb'">支付宝支付</button>
+        </div>
+        <div v-else>
+          <div class="pay-qrcode-wrap">
+            <img v-if="payType==='wx'" src="/wx收款码.jpg" alt="微信收款码" class="pay-qrcode" />
+            <img v-else-if="payType==='zfb'" src="/zfb收款码.jpg" alt="支付宝收款码" class="pay-qrcode" />
+          </div>
+          <div class="pay-tip">支付后请截图，并添加客服微信 <b>[微信号]</b>，凭截图拉您进入专属服务群并安排部署。</div>
+        </div>
+        <button class="pay-close" @click="closeModal">关闭</button>
       </div>
     </div>
   </section>
@@ -35,120 +61,300 @@ export default {
   name: 'FeatureBlockArea5',
   data() {
     return {
-      showPayModal: false,
-      angelSoldOut: false // 可根据实际逻辑动态切换
+      showModal: false,
+      payType: null,
+      countdown: '',
+      timer: null,
+      targetTime: new Date('2025-07-25T00:00:00').getTime()
     }
   },
+  mounted() {
+    this.updateCountdown();
+    this.timer = setInterval(this.updateCountdown, 1000);
+  },
+  beforeDestroy() {
+    if (this.timer) clearInterval(this.timer);
+  },
   methods: {
-    showPay(type) {
-      this.showPayModal = true;
+    openModal() {
+      this.showModal = true;
+      this.payType = null;
+    },
+    closeModal() {
+      this.showModal = false;
+      this.payType = null;
+    },
+    updateCountdown() {
+      const now = Date.now();
+      let diff = Math.max(0, this.targetTime - now);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * 1000 * 60 * 60 * 24;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * 1000 * 60 * 60;
+      const minutes = Math.floor(diff / (1000 * 60));
+      diff -= minutes * 1000 * 60;
+      const seconds = Math.floor(diff / 1000);
+      this.countdown = `${days}天 ${hours.toString().padStart(2,'0')}小时${minutes.toString().padStart(2,'0')}分${seconds.toString().padStart(2,'0')}秒`;
     }
   }
 }
 </script>
 <style scoped>
-.area5 {
+.area5-header {
   width: 90vw;
-  margin: 0 auto 2.2rem auto;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  padding: 1.5rem 1rem;
+  max-width: 1200px;
+  min-width: 320px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: linear-gradient(90deg, #fff3e0 0%, #ffe0b2 100%);
+  border-radius: 18px;
+  padding: 2.2em 1.5em 1.6em 1.5em;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(255,152,0,0.08);
+  box-sizing: border-box;
+  margin-bottom: 2.2em;
 }
-.area-title {
-  font-size: 1.3rem;
+.area5-title {
+  font-size: 1.7rem;
   font-weight: bold;
-  margin-bottom: 0.7rem;
-  text-align: center;
-}
-.area-subtitle {
-  font-size: 1.1rem;
-  color: #ff9800;
-  text-align: center;
-  margin-bottom: 0.7rem;
-}
-.countdown {
-  text-align: center;
-  font-size: 1.1rem;
-  margin-bottom: 1.2rem;
   color: #d84315;
+  margin-bottom: 0.7em;
+  line-height: 1.25;
 }
-.countdown-time {
-  font-weight: bold;
+.area5-subtitle {
   font-size: 1.2rem;
+  color: #ff9800;
+  margin-bottom: 1.1em;
+  line-height: 1.5;
+}
+.area5-countdown {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #388e3c;
+  margin-top: 1.2em;
+  margin-bottom: 0.1em;
+}
+.area5-countdown span {
+  font-size: 1.3rem;
+  color: #d84315;
+  font-weight: bold;
+  margin-left: 0.3em;
+}
+@media (max-width: 900px) {
+  .area5-header {
+    width: 94vw;
+    max-width: 98vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 1.1em 0.5em 0.8em 0.5em;
+    margin-top: 0.7em;
+    margin-bottom: 1.2em;
+  }
+  .area5-title {
+    font-size: 1.5rem;
+  }
+  .area5-subtitle,
+  .area5-countdown {
+    font-size: 1rem;
+  }
+  .area5-countdown span {
+    font-size: 1.1rem;
+  }
+}
+.area5-table-wrap {
+  width: 90vw;
+  max-width: 1200px;
+  min-width: 320px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  margin-bottom: 2.2em;
+}
+@media (max-width: 900px) {
+  .area5-table-wrap {
+    width: 94vw;
+    max-width: 98vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1.2em;
+  }
 }
 .price-table {
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto 1.2rem auto;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(255,152,0,0.06);
+  border: 1.5px solid #ffe0b2;
 }
 .price-table th, .price-table td {
-  border: 1px solid #ff9800;
-  padding: 0.5em 0.7em;
+  border: 1px solid #ffe0b2;
   text-align: center;
+  padding: 0.7em 0.5em;
+  font-size: 1.08rem;
 }
 .price-table th {
   background: #fff8e1;
   color: #b28704;
+  font-weight: bold;
 }
-.btn-primary {
+.price-table tr:last-child td {
+  border-bottom: none;
+}
+.price-table tr td:last-child, .price-table tr th:last-child {
+  border-right: none;
+}
+.buy-btn {
   background: #ff9800;
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 0.4em 1.2em;
-  font-size: 1rem;
+  padding: 0.5em 1.2em;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.2s;
 }
-.btn-secondary {
-  background: #eee;
+.buy-btn.disabled,
+.buy-btn:disabled {
+  background: #e0e0e0;
   color: #aaa;
-  border: none;
-  border-radius: 6px;
-  padding: 0.4em 1.2em;
-  font-size: 1rem;
   cursor: not-allowed;
-}
-.btn-secondary:disabled {
-  background: #eee;
-  color: #aaa;
+  box-shadow: none;
 }
 .pay-modal {
   position: fixed;
   left: 0; top: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
 }
 .pay-modal-content {
   background: #fff;
-  border-radius: 10px;
-  padding: 2rem 1.5rem 1.2rem 1.5rem;
+  border-radius: 16px;
+  padding: 2.2em 2em 1.5em 2em;
+  min-width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
   text-align: center;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pay-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #d84315;
+  margin-bottom: 1.2em;
+}
+.pay-qrcode-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2em 0 0.5em 0;
+  width: 100%;
 }
 .pay-qrcode {
-  width: 180px;
-  height: 180px;
-  margin: 1rem auto;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  background: #fff;
   display: block;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  .pay-modal-content {
+    min-width: 0;
+    max-width: 98vw;
+    padding: 0.7em 0.1em 0.7em 0.1em;
+  }
+  .pay-title {
+    font-size: 1.1rem;
+  }
+  .pay-qrcode {
+    max-width: 80vw;
+    max-height: 240px;
+    width: 100%;
+    height: auto;
+  }
+  .pay-type-btns {
+    flex-direction: column;
+    gap: 1em;
+    margin: 1em 0 1em 0;
+  }
+  .pay-type-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.7em 0;
+  }
 }
 .pay-tip {
   color: #d84315;
   font-size: 1rem;
-  margin-bottom: 1.2rem;
+  margin: 1.2em 0 1.2em 0;
 }
 .pay-close {
-  background: #eee;
+  background: #e0e0e0;
   color: #333;
   border: none;
   border-radius: 6px;
-  padding: 0.4em 1.2em;
-  font-size: 1rem;
+  padding: 0.5em 1.2em;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 0.5em;
+}
+.pay-type-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+  margin: 1.5em 0 1.2em 0;
+}
+.pay-type-btn {
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7em 2.2em;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(255,152,0,0.10);
+}
+.pay-type-btn.zfb {
+  background: #00aaff;
+}
+.pay-type-btn.wx {
+  background: #07c160;
+}
+.pay-type-btn:active {
+  filter: brightness(0.92);
+}
+@media (max-width: 600px) {
+  .pay-type-btns {
+    flex-direction: column;
+    gap: 1em;
+    margin: 1em 0 1em 0;
+  }
+  .pay-type-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.7em 0;
+  }
 }
 </style> 
