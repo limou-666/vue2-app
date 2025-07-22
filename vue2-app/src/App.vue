@@ -14,10 +14,11 @@
       :columns="3"
     />
     <FeatureBlockArea3
-      title="四位一体，揭秘“决胜单”如何为您保驾护航"
+      title="数据驱动，决胜未来"
       :items="feature3Items"
       :columns="3"
     />
+    <FeatureBlockArea4 />
     <AppFooter />
   </div>
 </template>
@@ -27,11 +28,12 @@ import HeaderBlock from './components/HeaderBlock.vue'
 import FeatureBlockArea1 from './components/FeatureBlockArea1.vue'
 import FeatureBlockArea2 from './components/FeatureBlockArea2.vue'
 import FeatureBlockArea3 from './components/FeatureBlockArea3.vue'
+import FeatureBlockArea4 from './components/FeatureBlockArea4.vue'
 import AppFooter from './components/AppFooter.vue'
 
 export default {
   name: 'App',
-  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, AppFooter },
+  components: { HeaderBlock, FeatureBlockArea1, FeatureBlockArea2, FeatureBlockArea3, FeatureBlockArea4, AppFooter },
   data() {
     return {
       feature1Items: [
@@ -42,13 +44,13 @@ export default {
       ],
       feature2Items: [
         { label: '价值1: 100%数据驱动', text: '告别直觉，让每一个采购决策都有据可依。' },
-        { label: '价值2: 24/7风险预警', text: '自动监控差评和痛点，在问题爆发前发出警报。' },
-        { label: '价值3: 90%效率提升', text: '从数小时的人工分析，到3分钟的自动化报告。' }
+        { label: '风险预警', text: '自动监控差评和痛点，在问题爆发前发出警报。' },
+        { label: '高效分析', text: '从数小时的人工分析，到3分钟的自动化报告。' }
       ],
       feature3Items: [
-        { label: '全链路追全域数据专员踪', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
-        { label: 'AI洞察分析师 ', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
-        { label: '首席汇报秘书', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' }
+        { label: '全链路追踪', text: '每一笔订单、每一次补货、每一个差评都能被系统自动追踪，形成完整数据链路。' },
+        { label: '智能洞察', text: 'AI自动分析市场、竞品、用户反馈，挖掘潜在风险和机会。' },
+        { label: '高效协同', text: '团队成员可实时共享分析结果，协同决策，提升整体效率。' }
       ]
     }
   }
