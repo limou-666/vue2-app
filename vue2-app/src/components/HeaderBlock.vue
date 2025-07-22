@@ -63,12 +63,14 @@ export default {
   min-height: 340px;
   max-height: 80vh;
   overflow: hidden;
+  border-radius: 2.5em;
 }
 @media (max-width: 600px) {
   .header {
     aspect-ratio: 16/9;
     min-height: 180px;
     max-height: 40vh;
+    border-radius: 1.2em;
   }
 }
 .header-bg-video {
@@ -115,7 +117,7 @@ export default {
   font-size: 2.8rem;
   font-weight: 900;
   margin-bottom: 0.7rem;
-  text-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 1.5px 0 #fff;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 1.5px 0 #e53935;
   letter-spacing: 2px;
   text-align: center;
   line-height: 1.2;
@@ -124,9 +126,9 @@ export default {
   -webkit-text-fill-color: transparent;
 }
 .sub-title {
-  font-size: 1.3rem;
+  font-size: 2.3rem;
   margin-bottom: 1.5rem;
-  color: #fffde7;
+  color: #e53935;
   text-shadow: 0 2px 8px rgba(0,0,0,0.18);
   text-align: center;
   font-weight: 500;
