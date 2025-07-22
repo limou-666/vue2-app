@@ -51,9 +51,7 @@ export default {
   margin: 2.5em 0;
   border: 3px solid transparent;
   border-radius: 18px;
-  background:
-    linear-gradient(white, white) padding-box,
-    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
+  /* background: linear-gradient(white, white) padding-box, linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box; */
   box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
   padding: 2.2em 3.5em 1.6em 3.5em;
   box-sizing: border-box;

@@ -1,17 +1,21 @@
 <template>
   <section class="feature-block" data-columns="3">
-    <div class="feature-title-bg">
-      <h2 class="section-title">{{ title }}</h2>
+    <div class="feature-area2-top">
+      <div class="feature-title-bg">
+        <h2 class="section-title">{{ title }}</h2>
+      </div>
     </div>
-    <div class="section-block-content">
-      <div class="section-block-grid" :style="gridStyle">
-        <div v-for="(item, idx) in items" :key="idx" class="card">
-          <div class="card-inner">
-            <div class="card-label-wrap">
-              <span class="card-label">{{ item.label }}</span>
-            </div>
-            <div class="card-text-wrap">
-              <span class="card-text" :title="item.text">{{ item.text }}</span>
+    <div class="feature-area2-bottom">
+      <div class="section-block-content">
+        <div class="section-block-grid" :style="gridStyle">
+          <div v-for="(item, idx) in items" :key="idx" class="card">
+            <div class="card-inner">
+              <div class="card-label-wrap">
+                <span class="card-label">{{ item.label }}</span>
+              </div>
+              <div class="card-text-wrap">
+                <span class="card-text" :title="item.text">{{ item.text }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -46,17 +50,8 @@ export default {
 
 <style scoped>
 .feature-title-bg {
-  width: 90vw;
-  min-width: 320px;
-  max-width: 100vw;
-  margin: 0 auto 0.7rem auto;
-  background: linear-gradient(90deg, rgba(220,38,38,0.8) 0%, rgba(255,87,34,0.8) 100%);
-  border-radius: 8px 8px 0 0;
-  padding: 1.1rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
+  background: none;
+  border-radius: 2.5em 2.5em 0 0;
 }
 .section-block-content {
   width: 90vw;
@@ -78,10 +73,11 @@ export default {
 .feature-block[data-columns='3'] .section-block-grid .card {
   height: 160px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 2.5em;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow: hidden;
   position: relative;
+  border: none;
 }
 .feature-block[data-columns='3'] .section-block-grid .card-inner {
   display: flex;
@@ -128,7 +124,7 @@ export default {
   box-sizing: border-box;
   max-width: 95%;
   background: none;
-  border-radius: 8px;
+  border-radius: 2.5em;
   padding: 0.2em 0;
   transition: font-size 0.2s, background 0.2s, padding 0.2s;
 }
@@ -158,7 +154,7 @@ export default {
   overflow-y: auto;
   padding: 0.6em 1em 0.6em 1em;
   background: #fff;
-  border-radius: 6px;
+  border-radius: 2.5em;
   box-sizing: border-box;
   height: 100%;
   display: block;
@@ -166,10 +162,7 @@ export default {
 .feature-block {
   margin: 2.5em auto;
   border: 3px solid transparent;
-  border-radius: 18px;
-  background:
-    linear-gradient(white, white) padding-box,
-    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
+  border-radius: 2.5em;
   box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
 }
 .feature-block:last-of-type {
@@ -204,5 +197,21 @@ export default {
     overflow-y: visible;
     white-space: pre-line;
   }
+}
+.feature-area2-top {
+  width: 90vw;
+  min-width: 320px;
+  max-width: 100vw;
+  margin: 0 auto 0.7rem auto;
+  background: linear-gradient(90deg, rgba(220,38,38,0.8) 0%, rgba(255,87,34,0.8) 100%);
+  border-radius: 2.5em;
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.feature-area2-bottom {
+  width: 100%;
 }
 </style> 

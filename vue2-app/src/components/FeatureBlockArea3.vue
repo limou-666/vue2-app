@@ -32,11 +32,22 @@ export default {
 .feature-block {
   margin: 2.5em auto;
   border: 3px solid transparent;
-  border-radius: 18px;
-  background:
-    linear-gradient(white, white) padding-box,
-    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
+  border-radius: 2.5em;
+  /* background: linear-gradient(white, white) padding-box, linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box; */
   box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
+}
+.feature-title-bg {
+  width: 90vw;
+  min-width: 320px;
+  max-width: 100vw;
+  margin: 0 auto 0.7rem auto;
+  background: linear-gradient(90deg, rgba(220,38,38,0.8) 0%, rgba(255,87,34,0.8) 100%);
+  border-radius: 2.5em;
+  padding: 1.1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 .feature-block[data-columns='4'] .section-block-grid {
   display: grid;
@@ -44,13 +55,10 @@ export default {
   gap: 1.2rem;
 }
 .feature-block[data-columns='4'] .section-block-grid .card {
-  height: 160px;
+  border-radius: 2.5em;
+  border: none;
   background: #fff;
-  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(255,152,0,0.06);
-  border-width: 1px;
-  border-style: solid;
-  border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1;
   margin: 0;
   padding: 0.01em 0.05em;
   display: flex;
@@ -64,6 +72,8 @@ export default {
   width: 100%;
 }
 .feature-block[data-columns='4'] .section-block-grid .card-label {
+  border-radius: 2.5em;
+  background: transparent;
   flex: 0 0 40%;
   display: flex;
   align-items: center;
@@ -75,6 +85,8 @@ export default {
   color: #ff9800;
 }
 .feature-block[data-columns='4'] .section-block-grid .card-text {
+  border-radius: 2.5em;
+  background: transparent;
   flex: 0 0 60%;
   display: flex;
   align-items: center;
@@ -85,8 +97,6 @@ export default {
   color: #666;
   line-height: 1.5;
   word-break: break-all;
-  background: #fff7e6;
-  border-radius: 8px;
   padding-left: 1.2em;
   padding-right: 0.5em;
   padding-top: 0.3em;

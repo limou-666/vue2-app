@@ -39,10 +39,8 @@ export default {
 .feature-block {
   margin: 2.5em auto;
   border: 3px solid transparent;
-  border-radius: 18px;
-  background:
-    linear-gradient(white, white) padding-box,
-    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
+  border-radius: 2.5em;
+  /* background: linear-gradient(white, white) padding-box, linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box; */
   box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
 }
 .feature-title-bg {
@@ -51,7 +49,7 @@ export default {
   max-width: 100vw;
   margin: 0 auto 0.7rem auto;
   background: linear-gradient(90deg, rgba(220,38,38,0.8) 0%, rgba(255,87,34,0.8) 100%);
-  border-radius: 8px 8px 0 0;
+  border-radius: 2.5em;
   padding: 1.1rem 1rem;
   display: flex;
   justify-content: center;

@@ -205,9 +205,7 @@ export default {
     border-radius: 8px !important;
     box-shadow: 0 1px 3px rgba(255,152,0,0.06) !important;
     padding: 0.01em 0.05em !important;
-    border-width: 1px !important;
-    border-style: solid !important;
-    border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1 !important;
+    border: none !important;
     margin: 0 !important;
     display: flex !important;
     align-items: center !important;

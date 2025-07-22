@@ -67,10 +67,30 @@ export default {
 }
 @media (max-width: 600px) {
   .header {
-    aspect-ratio: 16/9;
-    min-height: 180px;
-    max-height: 40vh;
+    min-height: 120px;
+    max-height: none;
+    height: 220px;
     border-radius: 1.2em;
+  }
+  .main-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.1;
+  }
+  .sub-title {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+  .header-btn {
+    font-size: 0.85rem;
+    padding: 0.4em 1em;
+    border-radius: 1.2em;
+  }
+  .header-titles {
+    top: 0.2em;
+  }
+  .header-btn-area {
+    margin-top: 0.7em;
   }
 }
 .header-bg-video {
@@ -148,5 +168,26 @@ export default {
   background: #ff9800;
   border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1;
   box-shadow: 0 6px 32px 0 rgba(255,152,0,0.18), 0 0 0 10px rgba(255,224,240,0.18);
+}
+@media (max-width: 600px) {
+  .main-title,
+  .sub-title {
+    display: block !important;
+  }
+  .main-title {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.1;
+    padding-left: 1.5em;
+    text-align: left;
+  }
+  .sub-title {
+    font-size: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .header-btn {
+    transform: scale(0.5);
+    transform-origin: top center;
+  }
 }
 </style> 
