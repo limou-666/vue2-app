@@ -74,4 +74,12 @@ export default {
     }
   }
 }
-</script> 
+</script>
+
+<style>
+body {
+  background: url('/底层背景.png') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+</style> 

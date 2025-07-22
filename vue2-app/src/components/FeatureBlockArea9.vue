@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     ctaTextStyle() {
-      if (!this.ctaActive) return { transform: 'translate(0,0)' };
+      if (!this.ctaActive || window.innerWidth <= 600) return { transform: 'translate(0,0)' };
       return {
         transform: `translate(${this.ctaOffset.x}px, ${this.ctaOffset.y}px)`
       };
@@ -46,6 +46,7 @@ export default {
       }
     },
     onMove(e) {
+      if (window.innerWidth <= 600) return;
       const btn = this.$refs.ctaBtn;
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -192,6 +193,13 @@ export default {
     font-size: 1.05rem;
     padding: 0.7em 0.7em;
     border-radius: 10px;
+  }
+  .cta-text {
+    transform: none !important;
+  }
+  .area9-cta:hover {
+    border-image: none !important;
+    box-shadow: none !important;
   }
 }
 </style> 

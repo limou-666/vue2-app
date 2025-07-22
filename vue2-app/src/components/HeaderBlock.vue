@@ -1,12 +1,16 @@
 <template>
   <header class="header">
-    <div class="header-bg"></div>
+    <video class="header-bg-video" src="/大屏幕背景.mp4" autoplay loop muted playsinline></video>
     <div class="header-content">
-      <h1 class="main-title">告别采购赌博，你的亚马逊专属AI决策大脑</h1>
-      <p class="sub-title">在下一次补货前，让“决胜单”Agent分析所有风险，用数据告诉你这批货到底该不该下单。</p>
-      <button class="header-btn" @mousemove="onMove" @mouseleave="onLeave" @click="$emit('scrollToArea5')" ref="ctaBtn">
-        <span class="cta-text" :style="ctaTextStyle">立即体验</span>
-      </button>
+      <div class="header-titles">
+        <h1 class="main-title">告别采购赌博，你的亚马逊专属AI决策大脑</h1>
+        <p class="sub-title">在下一次补货前，让“决胜单”Agent分析所有风险，用数据告诉你这批货到底该不该下单。</p>
+      </div>
+      <div class="header-btn-area">
+        <button class="header-btn" @mousemove="onMove" @mouseleave="onLeave" @click="$emit('scrollToArea5')" ref="ctaBtn">
+          <span class="cta-text" :style="ctaTextStyle">立即体验</span>
+        </button>
+      </div>
     </div>
   </header>
 </template>
@@ -54,45 +58,58 @@ export default {
 <style scoped>
 .header {
   position: relative;
-  background: #42b983;
-  color: #fff;
-  padding: 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  min-height: 340px;
-  overflow: hidden;
-  width: 90vw;
-  min-width: 320px;
-  max-width: 100vw;
-  margin: 0 auto 2.2rem auto;
-}
-.header-bg {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
   width: 100%;
-  height: 100%;
-  z-index: 1;
-  background: #42b983;
-  background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2J6d3Z2b2J6d3Z2b2J6d3Z2b2J6d3Z2b2J6d3Z2b2J6d3Z2/giphy.gif');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.55;
-  filter: blur(0px);
+  aspect-ratio: 16/9;
+  min-height: 340px;
+  max-height: 80vh;
+  overflow: hidden;
+}
+@media (max-width: 600px) {
+  .header {
+    aspect-ratio: 16/9;
+    min-height: 180px;
+    max-height: 40vh;
+  }
+}
+.header-bg-video {
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
 }
 .header-content {
-  position: relative;
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.header-titles {
+  position: absolute;
+  top: 7.9em;
+  left: 0;
   width: 100%;
-  padding: 3.5rem 1.5rem 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-btn-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 15.5em;
+}
+@media (max-width: 600px) {
+  .header-titles {
+    top: 0.5em;
+  }
+  .header-btn-area {
+    margin-top: 1.8em;
+  }
 }
 .main-title {
   font-size: 2.8rem;

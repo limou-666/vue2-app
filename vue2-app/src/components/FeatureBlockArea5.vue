@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     ctaTextStyle() {
-      if (!this.payActive) return { transform: 'translate(0,0)' };
+      if (!this.payActive || window.innerWidth <= 600) return { transform: 'translate(0,0)' };
       return {
         transform: `translate(${this.payOffset.x}px, ${this.payOffset.y}px)`
       };
@@ -115,6 +115,7 @@ export default {
       this.countdown = `${days}天 ${hours.toString().padStart(2,'0')}小时${minutes.toString().padStart(2,'0')}分${seconds.toString().padStart(2,'0')}秒`;
     },
     onMove(e) {
+      if (window.innerWidth <= 600) return;
       const btn = this.$refs.payBtn;
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -410,6 +411,15 @@ export default {
     width: 100%;
     font-size: 1rem;
     padding: 0.7em 0;
+  }
+}
+@media (max-width: 600px) {
+  .cta-text {
+    transform: none !important;
+  }
+  .buy-btn:hover {
+    border-image: none !important;
+    box-shadow: none !important;
   }
 }
 </style> 
