@@ -96,9 +96,11 @@ export default {
   box-shadow: none !important;
 }
 .feature-block[data-columns='4'] .section-block-grid .card:hover {
-  transform: scale(1.06) translateY(-6px);
-  box-shadow: 0 0 0 0 #fff, 0 0 32px 8px #90caf9cc;
+  /* 去除放大动画，hover无变化 */
+  transform: none !important;
+  box-shadow: none !important;
   z-index: 2;
+  animation: none !important;
 }
 @keyframes cardGuard {
   0% { box-shadow: 0 0 0 0 #fff, 0 0 0 0 #90caf9cc; }
@@ -179,21 +181,36 @@ export default {
 
 /* 强制覆盖移动端字体缩小 */
 @media (max-width: 600px) {
+  .feature-title-bg {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .section-title {
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    display: flex !important;
+  }
   .feature-block[data-columns='4'] .section-block-grid .card {
     height: 80px !important;
     min-height: 0 !important;
     padding: 0 !important;
   }
   .feature-block[data-columns='4'] .section-block-grid .card-label {
-    font-size: 1.13rem !important;
+    font-size: 0.98rem !important;
+    padding: 0.18em 0.1em 0.18em 0.1em !important;
   }
   .feature-block[data-columns='4'] .section-block-grid .card-text {
-    font-size: 0.92rem !important;
+    font-size: 0.78rem !important;
     padding: 0.15em 0.3em !important;
     margin: 0 0.1em !important;
     align-items: flex-start !important;
     text-align: left !important;
     white-space: pre-line !important;
+    line-height: 1.3 !important;
+    overflow: visible !important;
   }
   .section-title {
     font-size: 1.35rem !important;

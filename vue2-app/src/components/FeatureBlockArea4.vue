@@ -1,7 +1,7 @@
 <template>
   <section class="feature-block" data-columns="1">
     <div class="feature-title-bg">
-      <h2 class="section-title">眼见为实：一份真实的“决胜单”分析报告</h2>
+      <h2 class="section-title"><span class="marquee">眼见为实：一份真实的“决胜单”分析报告</span></h2>
     </div>
     <div class="section-block-content" style="position:relative;">
       <!-- 直线箭头1：指向标题 -->
@@ -132,13 +132,102 @@ export default {
   white-space: pre-line;
   pointer-events: none;
 }
+.area4-arrow-right {
+  position: absolute;
+  right: -70px;
+  top: 60px;
+  z-index: 30 !important;
+}
+.area4-label-right {
+  position: absolute;
+  right: -170px;
+  top: 45px;
+  min-width: 90px;
+  background: #e3f0ff;
+  color: #1976d2;
+  border: 2px solid #90caf9;
+  border-radius: 12px;
+  font-size: 1.08rem;
+  font-weight: bold;
+  padding: 0.5em 1.1em;
+  box-shadow: 0 4px 16px rgba(33,150,243,0.10);
+  text-align: left;
+  white-space: pre-line;
+  pointer-events: none;
+  z-index: 31 !important;
+}
 @media (max-width: 900px) {
   .area4-img-block-large {
     max-width: 98vw;
     padding: 0.2rem;
   }
-  .arrow-absolute {
-    display: none;
+}
+@media (max-width: 600px) {
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative !important;
   }
+  .feature-title-bg {
+    width: 90vw !important;
+    min-width: 320px !important;
+    max-width: 100vw !important;
+    margin: 0 auto 0.7rem auto !important;
+    border-radius: 2.5em !important;
+    padding: 0.3rem 1rem !important;
+    height: 2.4em !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .section-title {
+    font-size: 1.08rem !important;
+    line-height: 1.1 !important;
+    padding: 0 0.3em !important;
+    border-radius: 0.5em !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    width: 100% !important;
+    font-weight: 900 !important;
+    background: linear-gradient(90deg, #fffbe7 0%, #ffe082 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-fill-color: transparent !important;
+    user-select: text !important;
+    position: relative !important;
+    animation: none !important;
+  }
+  .section-title .marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: area4-title-marquee 8s linear infinite;
+    will-change: transform;
+    min-width: 100%;
+    position: relative;
+  }
+  .area4-arrow-right {
+    right: -18vw;
+    top: 7vw;
+    width: 16vw;
+    height: 6vw;
+    z-index: 30 !important;
+  }
+  .area4-label-right {
+    right: -38vw;
+    top: 3vw;
+    min-width: 22vw;
+    font-size: 0.92rem;
+    padding: 0.32em 0.7em;
+    z-index: 31 !important;
+  }
+}
+@keyframes area4-title-marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 </style> 

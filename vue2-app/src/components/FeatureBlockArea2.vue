@@ -302,4 +302,48 @@ export default {
   50% { opacity: 0.92; transform: scale(1); }
   100% { opacity: 0.92; transform: scale(1); }
 }
+@media (max-width: 600px) {
+  .feature-area2-top {
+    width: 90vw;
+    min-width: 320px;
+    max-width: 100vw;
+    margin: 0 auto 0.7rem auto;
+    border-radius: 2.5em;
+    padding: 0.3rem 1rem;
+    height: auto !important;
+    min-height: 2.8em !important;
+  }
+  .section-title {
+    font-size: 1.1rem !important;
+    height: auto !important;
+    min-height: 2.8em !important;
+    max-height: none !important;
+    line-height: 1.2 !important;
+    padding: 0 0.5em !important;
+    border-radius: 0.5em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    text-overflow: unset !important;
+    animation: bounceIn 1.1s cubic-bezier(.68,-0.55,.27,1.55) infinite !important;
+  }
+  .title-icon {
+    font-size: 1.1rem !important;
+    height: 1.1rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+    margin-right: 0.3em;
+  }
+  .title-main {
+    display: inline-block !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    text-overflow: unset !important;
+    max-width: 100vw !important;
+    vertical-align: middle !important;
+  }
+}
 </style> 

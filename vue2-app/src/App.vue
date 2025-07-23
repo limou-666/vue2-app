@@ -85,6 +85,11 @@ body {
   min-height: 100vh;
 }
 @media (max-width: 600px) {
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+  }
   .header-fullwidth {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
