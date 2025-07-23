@@ -194,27 +194,27 @@
     flex-direction: column;
     gap: 0.5em;
     padding: 0.8em 0.3em;
-    font-size: 0.98rem;
+    font-size: 1.18rem;
     border-radius: 14px;
   }
   .badge-icon {
     font-size: 1.2em;
   }
   .faq-title {
-    font-size: 1.05rem;
+    font-size: 1.18rem;
   }
   .faq-list {
     max-width: 100vw;
   }
   .faq-item {
-    font-size: 0.85rem;
-    padding: 0.5em 0.3em;
+    font-size: 1.05rem;
+    padding: 0.3em 0.2em;
   }
   .faq-q {
     margin-bottom: 0.3em;
   }
   .faq-a {
-    font-size: 0.85rem;
+    font-size: 1.05rem;
   }
 }
 </style> 

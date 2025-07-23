@@ -256,28 +256,38 @@ export default {
 }
 @media (max-width: 600px) {
   .area6-title {
-    font-size: 1.15rem;
+    font-size: 1.28rem;
     margin-bottom: 1em;
   }
   .area6-title-highlight {
-    font-size: 1.25rem;
+    font-size: 1.45rem;
   }
   .gift-list {
     max-width: 100vw;
   }
   .gift-item {
-    font-size: 0.85rem;
-    padding: 0.6em 0.5em;
+    font-size: 0.98rem;
+    padding: 0.4em 0.3em;
     margin-bottom: 0.7em;
   }
   .gift-icon {
-    font-size: 1.1em;
+    font-size: 1.3em;
     margin-right: 0.4em;
   }
   .angel-label {
-    font-size: 0.85em;
-    padding: 0.08em 0.3em;
+    font-size: 1em;
+    padding: 0.13em 0.5em;
     margin-right: 0.2em;
+  }
+  .area6-promise {
+    padding: 0.7em 0.7em 0.9em 0.7em;
+  }
+  .promise-title {
+    font-size: 1.18rem;
+  }
+  .promise-list li {
+    font-size: 1.08rem;
+    padding: 0.28em 0.7em;
   }
 }
 .area6-promise {

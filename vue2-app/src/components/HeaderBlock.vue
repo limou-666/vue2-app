@@ -64,13 +64,18 @@ export default {
   max-height: 80vh;
   overflow: hidden;
   border-radius: 2.5em;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (max-width: 600px) {
   .header {
+    width: 94vw;
+    max-width: 600px;
     min-height: 120px;
     max-height: none;
     height: 220px;
     border-radius: 1.2em;
+    margin: 0.7em auto 0.7em auto;
   }
   .main-title {
     font-size: 1.1rem;
@@ -87,7 +92,7 @@ export default {
     border-radius: 1.2em;
   }
   .header-titles {
-    top: 0.2em;
+    top: 2.5em;
   }
   .header-btn-area {
     margin-top: 0.7em;
@@ -131,6 +136,14 @@ export default {
   }
   .header-btn-area {
     margin-top: 1.8em;
+  }
+  .header-btn-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 .main-title {
@@ -195,16 +208,44 @@ export default {
     font-size: 0.7rem;
     margin-bottom: 0.3rem;
     line-height: 1.1;
-    padding-left: 1.5em;
-    text-align: left;
+    padding-left: -1.5em !important;
+    text-align: left !important;
   }
   .sub-title {
     font-size: 0.5rem;
     margin-bottom: 0.5rem;
+    padding-left: -1.2em !important;
+    text-align: left !important;
   }
   .header-btn {
-    transform: scale(0.5);
-    transform-origin: top center;
+    font-size: 1rem !important;
+    padding: 0.7em 1.6em !important;
+    border-radius: 1.5em !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .header-btn-area {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: -2.2em !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+@media (max-width: 600px) {
+  .header-titles {
+    top: 3.5em !important;
   }
 }
 </style> 

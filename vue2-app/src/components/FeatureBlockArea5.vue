@@ -276,14 +276,14 @@ export default {
     margin-bottom: 1.2em;
   }
   .area5-title {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   .area5-subtitle,
   .area5-countdown {
-    font-size: 1rem;
+    font-size: 1.18rem;
   }
   .area5-countdown span {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 }
 .area5-table-wrap {
@@ -318,7 +318,7 @@ export default {
 .price-table th, .price-table td {
   border: 1px solid #ffe0b2;
   text-align: center;
-  padding: 0.7em 0.5em;
+  padding: 0.5em 0.2em;
   font-size: 1.08rem;
 }
 .price-table th {
@@ -337,8 +337,8 @@ export default {
   color: #fff;
   border: none;
   border-radius: 1.2em;
-  padding: 0.7em 1.6em;
-  font-size: 1.15rem;
+  padding: 0.5em 0.7em;
+  font-size: 0.92rem;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.22s, transform 0.18s;

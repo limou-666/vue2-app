@@ -341,26 +341,29 @@ export default {
     margin-bottom: 0.5em;
   }
   .founder-desc {
-    font-size: 0.92rem;
+    font-size: 1.08rem;
     padding: 0.6em 0.7em;
   }
   .testimonials-title {
-    font-size: 1.05rem;
+    font-size: 1.18rem;
   }
   .testimonial-card {
-    padding: 0;
+    padding: 0.2em 0.2em;
     min-width: 0;
     max-width: 100%;
   }
   .testimonial-text {
-    font-size: 0.95rem;
+    font-size: 1.08rem;
   }
   .testimonial-user {
-    font-size: 0.85rem;
+    font-size: 0.98rem;
   }
   .area7-title {
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     padding: 0.5em 0.1em 0.4em 0.1em;
+  }
+  .testimonials-list {
+    padding: 1em 0.3em 0.7em 0.3em;
   }
 }
 .carousel-dots {

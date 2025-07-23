@@ -18,8 +18,9 @@ export default {
 }
 @media (max-width: 767px) {
   .footer {
-    font-size: 0.85rem;
-    padding: 0.5rem;
+    font-size: 0.95rem;
+    padding: 0.7rem;
+    color: #d84315;
   }
 }
 </style> 

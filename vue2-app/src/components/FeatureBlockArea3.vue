@@ -185,15 +185,18 @@ export default {
     padding: 0 !important;
   }
   .feature-block[data-columns='4'] .section-block-grid .card-label {
-    font-size: 0.95rem !important;
+    font-size: 1.13rem !important;
   }
   .feature-block[data-columns='4'] .section-block-grid .card-text {
-    font-size: 0.6rem !important;
+    font-size: 0.92rem !important;
     padding: 0.15em 0.3em !important;
     margin: 0 0.1em !important;
     align-items: flex-start !important;
     text-align: left !important;
     white-space: pre-line !important;
+  }
+  .section-title {
+    font-size: 1.35rem !important;
   }
 }
 </style> 

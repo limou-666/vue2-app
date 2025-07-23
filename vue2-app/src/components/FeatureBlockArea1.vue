@@ -1,10 +1,12 @@
 <template>
   <section class="feature-block">
-    <div class="feature-title-bg">
-      <h2 class="section-title animated-title">
-        <span class="title-icon">❗</span>
-        <span class="title-main">{{ title }}</span>
-      </h2>
+    <div class="feature-title-bg-wrap">
+      <div class="feature-title-bg">
+        <h2 class="section-title animated-title">
+          <span class="title-icon">❗</span>
+          <span class="title-main">{{ title }}</span>
+        </h2>
+      </div>
     </div>
     <div class="section-block-content">
       <div class="section-block-grid" :style="gridStyle">
@@ -16,13 +18,15 @@
           </div>
         </div>
       </div>
-      <div v-if="bottomTitle || bottomDesc" class="feature-bottom animated-case">
-        <div class="bottom-title">
-          <span class="case-icon">⚠️</span>
-          <span>{{ bottomTitle }}</span>
-        </div>
-        <div class="bottom-desc">
-          <span v-html="highlightNumbers(bottomDesc)"></span>
+      <div v-if="bottomTitle || bottomDesc" class="feature-bottom-wrap">
+        <div class="feature-bottom animated-case">
+          <div class="bottom-title">
+            <span class="case-icon">⚠️</span>
+            <span>{{ bottomTitle }}</span>
+          </div>
+          <div class="bottom-desc">
+            <span v-html="highlightNumbers(bottomDesc)"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -63,21 +67,33 @@ export default {
 </script>
 
 <style scoped>
-.feature-title-bg {
+/* 新增外层包裹盒子，带背景和圆角 */
+.feature-title-bg-wrap {
   width: 90vw;
   min-width: 320px;
   max-width: 100vw;
   margin: 0 auto 0.7rem auto;
   background: linear-gradient(120deg, #fffbe7 0%, #ffe082 40%, #ffd54f 70%, #ff9800 100%);
   border-radius: 2.5em 2.5em 0 0;
+  box-shadow: 0 0 32px 8px #ffd54f88, 0 0 0 8px #fffbe7cc, 0 8px 32px 0 #ff980055;
+  position: relative;
+  overflow: hidden;
+}
+.feature-title-bg {
+  width: 90vw;
+  min-width: 320px;
+  max-width: 100vw;
+  margin: 0 auto 0.7rem auto;
+  background: none;
+  border-radius: 0;
   padding: 1.7rem 1.5rem 1.3rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  box-shadow: 0 0 32px 8px #ffd54f88, 0 0 0 8px #fffbe7cc, 0 8px 32px 0 #ff980055;
-  position: relative;
-  overflow: hidden;
+  box-shadow: none;
+  position: static;
+  overflow: visible;
   animation: headerFlowBg 8s linear infinite alternate;
 }
 @keyframes headerFlowBg {
@@ -331,13 +347,41 @@ export default {
 
 /* 将移动端样式放到最后并加!important */
 @media (max-width: 600px) {
+  .feature-block {
+    border-radius: 1.5em !important;
+    overflow: visible !important;
+  }
+  .feature-title-bg-wrap {
+    width: 94vw !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    margin: 0 auto 0.7rem auto !important;
+    background: linear-gradient(120deg, #fffbe7 0%, #ffe082 40%, #ffd54f 70%, #ff9800 100%) !important;
+    border-radius: 1.5em !important;
+    box-shadow: 0 0 18px 4px #ffd54f55 !important;
+    position: relative !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+  .feature-title-bg {
+    background: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    position: static !important;
+    overflow: visible !important;
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem !important;
+    min-height: 0 !important;
+  }
   .section-block-grid {
     grid-template-columns: 1fr !important;
     grid-template-rows: repeat(4, 1fr) !important;
     gap: 0.18rem !important;
   }
+  .section-title {
+    font-size: 1.05rem !important;
+  }
   .section-block-grid .card {
-    height: 70px !important;
+    height: 60px !important;
     border-radius: 10px !important;
     box-shadow: 0 1px 3px rgba(255,152,0,0.10) !important;
     padding: 0.01em 0.05em !important;
@@ -348,7 +392,7 @@ export default {
     justify-content: center !important;
   }
   .section-block-grid .card-inner {
-    font-size: 0.98rem !important;
+    font-size: 0.92rem !important;
     padding: 0 0.01em !important;
     display: flex !important;
     align-items: center !important;
@@ -356,26 +400,59 @@ export default {
     width: 100% !important;
   }
   .section-block-grid .card-icon {
-    font-size: 1.4rem !important;
+    font-size: 1.1rem !important;
     margin-left: 0.18rem !important;
     margin-right: 0.02rem !important;
   }
   .section-block-grid .card-text {
-    font-size: 0.89rem !important;
+    font-size: 0.82rem !important;
     margin-left: 0.01rem !important;
     text-align: center !important;
     width: auto !important;
   }
   .bottom-title {
-    font-size: 1.05rem !important;
+    font-size: 1.18rem !important;
   }
   .bottom-desc {
-    font-size: 0.98rem !important;
+    font-size: 1.13rem !important;
   }
   .animated-case,
   .case-icon,
   .case-number {
     animation: none !important;
+  }
+  .section-block-grid .card:hover {
+    transform: none !important;
+  }
+  .section-block-grid .card:hover .card-text-scroll {
+    animation: none !important;
+  }
+  .feature-bottom-wrap {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding-left: 3vw !important;
+    padding-right: 3vw !important;
+    margin: 0 !important;
+    background: linear-gradient(90deg, #fffde7 0%, #ffe082 100%) !important;
+    border-radius: 1.5em !important;
+    box-shadow: 0 0 18px 4px #ffd54f33 !important;
+    position: relative !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .feature-bottom {
+    background: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1.3rem 1.2rem 1.4rem 1.2rem !important;
   }
 }
 .animated-title {

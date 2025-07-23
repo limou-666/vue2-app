@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <HeaderBlock @scrollToArea5="scrollToArea5" />
+    <div class="header-fullwidth">
+      <HeaderBlock @scrollToArea5="scrollToArea5" />
+    </div>
     <FeatureBlockArea1
       title="你是否也曾因为一次错误的补货，亏掉数万利润？"
       :items="feature1Items"
@@ -81,5 +83,16 @@ body {
   background: url('/底层背景.png') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
+}
+@media (max-width: 600px) {
+  .header-fullwidth {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
 }
 </style> 

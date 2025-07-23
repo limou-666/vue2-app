@@ -265,14 +265,14 @@ export default {
     gap: 0.6em;
   }
   .area9-value {
-    font-size: 0.95rem;
+    font-size: 1.18rem;
   }
   .area9-urgency {
-    font-size: 0.82rem;
+    font-size: 1.05rem;
   }
   .area9-cta {
-    font-size: 1.05rem;
-    padding: 0.7em 0.7em;
+    font-size: 1.18rem;
+    padding: 0.5em 0.7em;
     border-radius: 10px;
   }
   .cta-text {
