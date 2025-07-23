@@ -24,31 +24,43 @@
             <span class="gift-value gold">价值 ¥12,999</span>
           </li>
           <li class="gift-item">
-            <div class="gift-flex-4col">
-              <div class="gift-col gift-col-icon"><span class="gift-icon">✓</span></div>
-              <div class="gift-col gift-col-main"><span class="gift-main marquee">超详细部署视频教程</span></div>
-              <div class="gift-col gift-col-tag"><span class="gift-tag">独家</span></div>
-              <div class="gift-col gift-col-value"><span class="gift-value gold">价值 ¥999</span></div>
-            </div>
+            <span class="gift-icon">✓</span>
+            <span class="gift-main-wrap">
+              <span class="gift-main-row">
+                <span class="gift-main">“超详细部署视频教程</span>
+                <span class="gift-tag">限时赠送</span>
+              </span>
+            </span>
+            <span class="gift-value gold">价值 ¥12,999</span>
           </li>
           <li class="gift-item">
             <span class="gift-icon">✓</span>
-            <span class="gift-main">30天部署问题专属技术支持 <span class="gift-tag">限时赠送</span></span>
-            <span class="gift-value gold">价值 ¥1,999</span>
+            <span class="gift-main-wrap">
+              <span class="gift-main-row">
+                <span class="gift-main">30天部署问题专属技术支持 </span>
+                <span class="gift-tag">限时赠送</span>
+              </span>
+            </span>
+            <span class="gift-value gold">价值 ¥12,999</span>
           </li>
           <li class="gift-item">
             <span class="gift-icon">✓</span>
-            <span class="gift-main">专属VIP用户交流群永久席位 <span class="gift-tag">独家</span></span>
-            <span class="gift-value gold">无价</span>
+            <span class="gift-main-wrap">
+              <span class="gift-main-row">
+                <span class="gift-main">专属VIP用户交流群永久席位 </span>
+                <span class="gift-tag">限时赠送</span>
+              </span>
+            </span>
+            <span class="gift-value gold">价值 ¥12,999</span>
           </li>
-          <li class="gift-item angel-only">
+          <li class="gift-item">
             <span class="gift-icon gold-crown">👑</span>
             <span class="gift-main-wrap">
               <span class="gift-main-row">
                 <span class="gift-main">1对1在线部署指导</span>
-                <span class="gift-tag">独家</span>
+                <span class="angel-label">合伙人专享</span>
+                <span class="gift-tag">专属</span>
               </span>
-              <span class="angel-label">【天使合伙人专享】</span>
             </span>
             <span class="gift-value gold">价值 ¥2,999</span>
           </li>
@@ -443,6 +455,18 @@ export default {
     flex: 0 0 auto;
     margin-right: 0.05em;
     margin-left: 0.18em;
+  }
+  .gift-item:hover {
+    box-shadow: none !important;
+    border-color: #ffe0b2 !important;
+    transform: none !important;
+    z-index: auto !important;
+  }
+  .gift-main,
+  .angel-label,
+  .gift-tag,
+  .gift-value {
+    font-size: 0.72em !important;
   }
 }
 .area6-promise {
