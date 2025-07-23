@@ -157,13 +157,16 @@ export default {
 </script>
 <style scoped>
 .feature-block {
+   width: 90vw;
+  min-width: 320px;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  width: 90vw;
-  min-width: 320px;
   margin: 2.5em 0;
+  box-sizing: border-box;
   border-radius: 18px;
+  background: linear-gradient(135deg, #fffbe7 0%, #ffe082 40%, #ffd54f 80%, #ffe0b2 100%);
+  /* 与7/8区统一，温暖渐变 */
   /* background: linear-gradient(white, white) padding-box, linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box; */
 }
 .area5-header {
@@ -175,7 +178,7 @@ export default {
   transform: translateX(-50%);
   margin-left: 0;
   margin-right: 0;
-  background: linear-gradient(120deg, #fffbe7 0%, #ffe082 60%, #1e190b 100%);
+  background: linear-gradient(120deg, #fffbe7 0%, #ffe082 40%, #ffd54f 70%, #ff9800 100%, #fffbe7 120%);
   border-radius: 18px;
   padding: 3.6em 2.2em 2.2em 2.2em;
   text-align: center;

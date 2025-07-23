@@ -141,9 +141,26 @@ export default {
   letter-spacing: 2px;
   text-align: center;
   line-height: 1.2;
-  background: linear-gradient(90deg, #fff 20%, #ffe082 80%);
+  background: linear-gradient(90deg, #2196f3 0%, #7f7fd5 40%, #b388ff 80%, #fff 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  animation: headerTitlePulse 4.2s cubic-bezier(.4,1.6,.6,1) 0.8s infinite, headerTitleShine 2.8s linear 0.8s infinite;
+  position: relative;
+  overflow: hidden;
+}
+@keyframes headerTitlePulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.09); }
+  60% { transform: scale(1.13); }
+  80% { transform: scale(1.09); }
+  100% { transform: scale(1); }
+}
+@keyframes headerTitleShine {
+  0% { background-position: 200% 0; }
+  100% { background-position: 0 0; }
 }
 .sub-title {
   font-size: 2.3rem;

@@ -61,16 +61,16 @@ export default {
 </script>
 <style scoped>
 .feature-block {
+   width: 90vw;
+  min-width: 320px;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  width: 90vw;
-  min-width: 320px;
   margin: 2.5em 0;
-  border-radius: 18px;
-  /* background: linear-gradient(white, white) padding-box, linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box; */
-  padding: 2.2em 3.5em 1.6em 3.5em;
   box-sizing: border-box;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fffbe7 0%, #ffe082 40%, #ffd54f 80%, #ffe0b2 100%);
+  /* 与7/8区统一，温暖渐变 */
 }
 .area6-header,
 .area6-list {

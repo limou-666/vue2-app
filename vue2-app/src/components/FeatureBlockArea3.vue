@@ -92,16 +92,18 @@ export default {
   position: relative;
   opacity: 1;
   transition: box-shadow 0.22s, transform 0.22s, opacity 0.22s;
+  border: none !important;
+  box-shadow: none !important;
 }
 .feature-block[data-columns='4'] .section-block-grid .card:hover {
   transform: scale(1.06) translateY(-6px);
-  box-shadow: 0 0 0 0 #fff, 0 0 32px 8px #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13);
+  box-shadow: 0 0 0 0 #fff, 0 0 32px 8px #90caf9cc;
   z-index: 2;
 }
 @keyframes cardGuard {
-  0% { box-shadow: 0 0 0 0 #fff, 0 0 0 0 #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13); }
-  60% { box-shadow: 0 0 0 16px #90caf9aa, 0 0 32px 8px #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13); }
-  100% { box-shadow: 0 0 0 0 #fff, 0 0 32px 8px #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13); }
+  0% { box-shadow: 0 0 0 0 #fff, 0 0 0 0 #90caf9cc; }
+  60% { box-shadow: 0 0 0 16px #90caf9aa, 0 0 32px 8px #90caf9cc; }
+  100% { box-shadow: 0 0 0 0 #fff, 0 0 32px 8px #90caf9cc; }
 }
 .feature-block[data-columns='4'] .section-block-grid .card-inner {
   display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">© 2024 响应式布局示例</footer>
+  <footer class="footer">决胜单 · 让每一次补货决策有据可依</footer>
 </template>
 
 <script>
@@ -10,8 +10,8 @@ export default {
 
 <style scoped>
 .footer {
-  background: #222;
-  color: #fff;
+  background: none;
+  color: #ffffff;
   text-align: center;
   padding: 1rem;
   font-size: 1rem;

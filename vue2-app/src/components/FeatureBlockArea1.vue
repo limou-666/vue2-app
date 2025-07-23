@@ -68,14 +68,21 @@ export default {
   min-width: 320px;
   max-width: 100vw;
   margin: 0 auto 0.7rem auto;
-  background: linear-gradient(90deg, rgba(220,38,38,0.92) 0%, rgba(255,87,34,0.92) 100%);
+  background: linear-gradient(120deg, #fffbe7 0%, #ffe082 40%, #ffd54f 70%, #ff9800 100%);
   border-radius: 2.5em 2.5em 0 0;
-  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  padding: 1.7rem 1.5rem 1.3rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  box-shadow: 0 6px 32px 0 rgba(255,87,34,0.10), 0 0 0 8px rgba(255,224,240,0.10);
+  box-shadow: 0 0 32px 8px #ffd54f88, 0 0 0 8px #fffbe7cc, 0 8px 32px 0 #ff980055;
+  position: relative;
+  overflow: hidden;
+  animation: headerFlowBg 8s linear infinite alternate;
+}
+@keyframes headerFlowBg {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 .section-title {
   font-size: 2.3rem;
@@ -381,7 +388,13 @@ export default {
   color: #ff9800;
   margin-right: 0.3em;
   vertical-align: middle;
-  animation: iconFlash 1.2s infinite alternate;
+  animation: iconFlash 1.2s infinite alternate, iconGlow 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px #ffd54f) drop-shadow(0 0 24px #fffbe7cc);
+}
+@keyframes iconGlow {
+  0% { filter: drop-shadow(0 0 8px #ffd54f) drop-shadow(0 0 0 #fffbe7cc); }
+  50% { filter: drop-shadow(0 0 24px #ffd54f) drop-shadow(0 0 32px #fffbe7cc); }
+  100% { filter: drop-shadow(0 0 8px #ffd54f) drop-shadow(0 0 0 #fffbe7cc); }
 }
 .title-main {
   background: linear-gradient(90deg, #fffbe7 0%, #ffe082 40%, #fffbe7 100%);
@@ -424,12 +437,12 @@ export default {
   animation: fadeInCaseSoftLoop 6.5s ease-in-out infinite;
 }
 @keyframes fadeInCaseSoftLoop {
-  0% { opacity: 0.35; }
+  0% { opacity: 0.8; }
   10% { opacity: 0.6; }
   30% { opacity: 1; }
   70% { opacity: 1; }
   90% { opacity: 0.6; }
-  100% { opacity: 0.35; }
+  100% { opacity: 0.8; }
 }
 .case-icon {
   font-size: 1.5em;
