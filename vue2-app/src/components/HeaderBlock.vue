@@ -196,8 +196,9 @@ export default {
 }
 .header-btn:hover {
   background: #ff9800;
-  border-image: linear-gradient(90deg, #ff9800 0%, #d84315 100%) 1;
-  box-shadow: 0 6px 32px 0 rgba(255,152,0,0.18), 0 0 0 10px rgba(255,224,240,0.18);
+  /* 移除橙色渐变边框和box-shadow，仅保留背景色变化 */
+  border: none !important;
+  box-shadow: none !important;
 }
 @media (max-width: 600px) {
   .main-title,
