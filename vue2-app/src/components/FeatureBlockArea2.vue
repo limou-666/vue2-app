@@ -346,4 +346,14 @@ export default {
     vertical-align: middle !important;
   }
 }
+@media (max-width: 600px) {
+  .feature-block[data-columns='2'] .section-block-grid .card {
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+  .feature-block[data-columns='2'] .section-block-grid .card:active {
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px 0 #90caf9cc, 0 0 0 8px #b2ebf255;
+    z-index: 3;
+  }
+}
 </style> 

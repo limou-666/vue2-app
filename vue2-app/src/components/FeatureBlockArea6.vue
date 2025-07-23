@@ -15,13 +15,21 @@
         <ul class="gift-list">
           <li class="gift-item">
             <span class="gift-icon">✓</span>
-            <span class="gift-main">“决胜单”N8N Agent工作流模板 <span class="gift-tag">限时赠送</span></span>
+            <span class="gift-main-wrap">
+              <span class="gift-main-row">
+                <span class="gift-main">“决胜单”N8N Agent工作流模板</span>
+                <span class="gift-tag">限时赠送</span>
+              </span>
+            </span>
             <span class="gift-value gold">价值 ¥12,999</span>
           </li>
           <li class="gift-item">
-            <span class="gift-icon">✓</span>
-            <span class="gift-main">超详细部署视频教程 <span class="gift-tag">独家</span></span>
-            <span class="gift-value gold">价值 ¥999</span>
+            <div class="gift-flex-4col">
+              <div class="gift-col gift-col-icon"><span class="gift-icon">✓</span></div>
+              <div class="gift-col gift-col-main"><span class="gift-main marquee">超详细部署视频教程</span></div>
+              <div class="gift-col gift-col-tag"><span class="gift-tag">独家</span></div>
+              <div class="gift-col gift-col-value"><span class="gift-value gold">价值 ¥999</span></div>
+            </div>
           </li>
           <li class="gift-item">
             <span class="gift-icon">✓</span>
@@ -35,8 +43,12 @@
           </li>
           <li class="gift-item angel-only">
             <span class="gift-icon gold-crown">👑</span>
-            <span class="gift-main">
-              <span class="angel-label">【天使合伙人专享】</span>1对1在线部署指导 <span class="gift-tag">独家</span>
+            <span class="gift-main-wrap">
+              <span class="gift-main-row">
+                <span class="gift-main">1对1在线部署指导</span>
+                <span class="gift-tag">独家</span>
+              </span>
+              <span class="angel-label">【天使合伙人专享】</span>
             </span>
             <span class="gift-value gold">价值 ¥2,999</span>
           </li>
@@ -255,39 +267,182 @@ export default {
   margin-left: 0.1em;
 }
 @media (max-width: 600px) {
+  .area6-header {
+    width: 100% !important;
+    margin-bottom: 0.7em !important;
+    padding: 0 !important;
+  }
+  .area6-value-block {
+    padding: 0.18em 0.3em !important;
+    gap: 0.18em !important;
+  }
+  .value-gift-icon {
+    font-size: 1em !important;
+    margin-right: 0.08em !important;
+  }
+  .value-label {
+    font-size: 0.72rem !important;
+    margin-right: 0.08em !important;
+  }
+  .value-num {
+    font-size: 0.92rem !important;
+    letter-spacing: 0.5px !important;
+    margin-right: 0.08em !important;
+  }
+  .value-desc {
+    font-size: 0.72rem !important;
+    margin-left: 0.08em !important;
+    margin-right: 0.08em !important;
+  }
+  .value-market {
+    font-size: 0.62rem !important;
+    margin-left: 0.08em !important;
+  }
   .area6-title {
-    font-size: 1.28rem;
-    margin-bottom: 1em;
-  }
-  .area6-title-highlight {
-    font-size: 1.45rem;
-  }
-  .gift-list {
-    max-width: 100vw;
+    font-size: 0.78rem !important;
+    margin-bottom: 0.4em !important;
+    line-height: 1.15 !important;
+    padding: 0 0.1em !important;
+    white-space: normal !important;
+    word-break: break-all !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: hidden !important;
   }
   .gift-item {
-    font-size: 0.98rem;
-    padding: 0.4em 0.3em;
-    margin-bottom: 0.7em;
+    font-size: 0.82rem !important;
+    padding: 0.32em 0.2em !important;
+    margin-bottom: 0.6em !important;
+    gap: 0.3em !important;
+    align-items: flex-start !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
   }
-  .gift-icon {
-    font-size: 1.3em;
-    margin-right: 0.4em;
+  .gift-icon, .gold-crown {
+    font-size: 1em !important;
+    margin-right: 0.12em !important;
+    flex-shrink: 0 !important;
+    margin-top: 0.08em !important;
+  }
+  .gift-main-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    width: 100%;
+    min-width: 0;
+    max-width: 60vw;
+  }
+  .gift-main-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100%;
+    min-width: 0;
+    max-width: 60vw;
+  }
+  .gift-main {
+    font-size: 0.98em !important;
+    color: #d84315 !important;
+    font-weight: 900 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    flex: none !important;
+    margin-right: 0.08em !important;
+    margin-left: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    line-height: 1.18 !important;
+    max-width: 38vw !important;
+    position: relative !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+  .marquee {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    animation: gift-main-marquee 8s linear infinite;
+    will-change: transform;
+    min-width: 100%;
+    position: relative;
+    vertical-align: middle;
+  }
+  .gift-tag {
+    font-size: 0.68em !important;
+    padding: 0.08em 0.5em !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    border-radius: 0.8em !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    background: linear-gradient(90deg, #ffd54f 0%, #ff9800 100%) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    box-shadow: 0 1px 4px #ffd54f55 !important;
+    text-align: center !important;
   }
   .angel-label {
-    font-size: 1em;
-    padding: 0.13em 0.5em;
-    margin-right: 0.2em;
+    font-size: 0.68em !important;
+    padding: 0.08em 0.5em !important;
+    margin-left: 0 !important;
+    margin-top: 0.18em !important;
+    border-radius: 0.8em !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    background: linear-gradient(90deg, #ffd54f 0%, #ff9800 100%) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    box-shadow: 0 1px 4px #ffd54f55 !important;
+    text-align: center !important;
   }
-  .area6-promise {
-    padding: 0.7em 0.7em 0.9em 0.7em;
+  .gift-value {
+    color: #ff9800 !important;
+    font-weight: 900 !important;
+    margin-left: 0.2em !important;
+    white-space: nowrap !important;
+    font-size: 0.82em !important;
+    text-shadow: 0 2px 8px #ffe08299 !important;
+    flex-shrink: 0 !important;
+    align-self: flex-start !important;
+    margin-top: 0.08em !important;
   }
-  .promise-title {
-    font-size: 1.18rem;
+  .gift-flex-4col {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100%;
+    min-width: 0;
+    gap: 0 !important;
   }
-  .promise-list li {
-    font-size: 1.08rem;
-    padding: 0.28em 0.7em;
+  .gift-col {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+  .gift-col-icon {
+    flex: 0 0 auto;
+    margin-right: 0.18em;
+    margin-left: 0.05em;
+  }
+  .gift-col-main {
+    flex: 1 1 0;
+    min-width: 0;
+    margin-right: 0.18em;
+  }
+  .gift-col-tag {
+    flex: 0 0 auto;
+    margin-right: 0.18em;
+  }
+  .gift-col-value {
+    flex: 0 0 auto;
+    margin-right: 0.05em;
+    margin-left: 0.18em;
   }
 }
 .area6-promise {

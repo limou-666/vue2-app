@@ -66,7 +66,7 @@ export default {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  animation: fadeInTitle 1.2s ease-in forwards;
+  animation: fadeInTitle 1.2s ease-in forwards, titlePulse 2.8s ease-in-out infinite;
 }
 .section-title .title-icon {
   font-size: 2.1rem;
@@ -77,6 +77,19 @@ export default {
 @keyframes fadeInTitle {
   0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes titlePulse {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.04); }
+  20% { transform: scale(1.08); }
+  30% { transform: scale(1.12); }
+  40% { transform: scale(1.16); }
+  50% { transform: scale(1.18); }
+  60% { transform: scale(1.18); }
+  70% { transform: scale(1.14); }
+  80% { transform: scale(1.08); }
+  90% { transform: scale(1.03); }
+  100% { transform: scale(1); }
 }
 .feature-block[data-columns='4'] .section-block-grid {
   display: grid;
@@ -214,6 +227,18 @@ export default {
   }
   .section-title {
     font-size: 1.35rem !important;
+  }
+}
+@media (min-width: 601px) {
+  .feature-block[data-columns='4'] .section-block-grid .card {
+    transition: box-shadow 0.22s, transform 0.22s, opacity 0.22s !important;
+    will-change: transform, box-shadow !important;
+  }
+  .feature-block[data-columns='4'] .section-block-grid .card:hover {
+    transform: scale(1.08) translateY(-8px) !important;
+    box-shadow: 0 8px 32px 0 #90caf9cc, 0 0 0 8px #b2ebf255 !important;
+    z-index: 3 !important;
+    animation: none !important;
   }
 }
 </style> 

@@ -3,6 +3,7 @@
     <div class="area5-main-block">
       <div class="area5-header">
         <div class="area5-title">加入我们，成为第一批用AI优化库存的聪明卖家（仅限本微信群）</div>
+        <div class="buy-tip">错过再等一年！</div>
         <div class="area5-subtitle">阶梯团购，越早越优惠，名额售罄价格立即上涨！</div>
         <div class="area5-countdown">限时抢购倒计时：<span>{{ countdown }}</span></div>
       </div>
@@ -17,7 +18,7 @@
           </tr>
           <tr class="current-row">
             <td class="current-label"><span class="current-icon">🔥</span>天使合伙人</td>
-            <td class="current-price">¥3,999 <span class="current-tag">限时特价</span></td>
+            <td class="current-price"><span class="current-price-main">¥3,999</span><span class="current-tag">限时特价</span></td>
             <td>¥12,999</td>
             <td><span class="current-left">3</span></td>
             <td style="text-align:center;vertical-align:middle;">
@@ -31,7 +32,6 @@
                 >
                   <span class="cta-text" :style="ctaTextStyle">立即抢占</span>
                 </button>
-                <div class="buy-tip">错过再等一年！</div>
               </div>
             </td>
           </tr>
@@ -582,6 +582,91 @@ export default {
     border-image: none !important;
     box-shadow: none !important;
   }
+  .price-table td, .price-table th, .current-price-main, .current-price-tag, .buy-btn, .buy-btn.disabled, .buy-btn:disabled, .cta-text, .current-label {
+    font-size: 0.72rem !important;
+  }
+  .price-table td:nth-child(1),
+  .price-table td:nth-child(2),
+  .price-table td:nth-child(3),
+  .price-table td:nth-child(4),
+  .price-table td:nth-child(5) {
+    font-size: 0.72rem !important;
+  }
+  .current-price-main {
+    font-size: 0.92rem !important;
+    margin-top: 0.28em !important;
+    display: block !important;
+  }
+  .current-tag {
+    display: block !important;
+    margin-top: 0.08em !important;
+  }
+  .current-label {
+    font-size: 0.82rem !important;
+  }
+  .buy-btn, .buy-btn.disabled, .buy-btn:disabled {
+    font-size: 0.72rem !important;
+  }
+  .cta-text {
+    font-size: 0.72rem !important;
+  }
+  .current-price-tag {
+    font-size: 0.58rem !important;
+  }
+  .buy-btn, .buy-btn.disabled, .buy-btn:disabled {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  .buy-btn:hover, .buy-btn:active, .buy-btn:focus {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  .buy-tip {
+    display: none !important;
+  }
+  .buy-btn .cta-text::before,
+  .current-label .current-icon {
+    display: none !important;
+    content: none !important;
+  }
+  .price-table th {
+    font-size: 0.62rem !important;
+  }
+  .current-label {
+    font-size: 0.68rem !important;
+  }
+  .current-price {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .current-price .current-tag {
+    display: block !important;
+    font-size: 0.52rem !important;
+    margin-top: 0.08em !important;
+    margin-left: 0 !important;
+    padding: 0.08em 0.7em !important;
+    border-radius: 0.7em !important;
+    background: linear-gradient(90deg, #ff9800 0%, #ffd54f 100%) !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 8px #ffd54f55 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    min-width: 3.2em !important;
+    max-width: 100%;
+  }
+  .current-price .current-tag::before {
+    content: none !important;
+  }
 }
 @media (max-width: 600px) {
   .feature-block {
@@ -666,5 +751,115 @@ export default {
   background: none;
   position: relative;
   z-index: 2;
+}
+/* 桌面端专属样式 */
+@media (min-width: 601px) {
+  .current-row .current-label {
+    font-size: 1.18rem;
+    font-weight: 900;
+    color: #d84315;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 8px #ffd54f55;
+  }
+  .current-row .current-price-main {
+    font-size: 1.32rem;
+    font-weight: 900;
+    color: #ff3d00;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 8px #ffd54f55;
+    margin-right: 0.18em;
+  }
+  .current-row .buy-btn {
+    font-size: 1.12rem;
+    font-weight: 900;
+    padding: 0.7em 2.2em;
+    border-radius: 1.6em;
+    background: linear-gradient(90deg, #ff9800 0%, #ff3d00 100%);
+    box-shadow: 0 8px 32px #ff980099, 0 0 0 12px #ffd54f55;
+    letter-spacing: 1.2px;
+    text-shadow: 0 2px 8px #ffd54f55;
+  }
+  .current-row .buy-tip {
+    font-size: 0.92rem;
+    color: #ff9800;
+    opacity: 0.75;
+    font-weight: 600;
+    margin-top: 0.18em;
+    background: none;
+    box-shadow: none;
+    padding: 0.1em 0.5em;
+    font-family: 'Microsoft YaHei', 'Heiti SC', 'SimHei', Arial, sans-serif !important;
+  }
+}
+.buy-tip,
+.current-row .buy-tip {
+  font-family: 'Microsoft YaHei', 'Heiti SC', 'SimHei', Arial, sans-serif !important;
+}
+@media (min-width: 601px) {
+  .buy-tip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.18rem;
+    font-weight: 900;
+    animation: buyTipFloat 2.8s ease-in-out infinite alternate, buyTipFadeIn 0.8s;
+    opacity: 1;
+    max-width: 400px;
+    padding: 0.38em 2.2em;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 2.6em;
+  }
+  .buy-tip::before {
+    content: '⏰ ';
+    font-size: 1.18rem;
+    margin-right: 0.32em;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+  }
+  @keyframes buyTipFloat {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(32px); }
+    100% { transform: translateX(-24px); }
+  }
+  .buy-btn.disabled,
+  .buy-btn:disabled {
+    background: #e0e0e0;
+    color: #aaa;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none !important;
+    animation: none !important;
+    padding: 0.4em 1em !important;
+    font-size: 0.95rem !important;
+    border-radius: 1.1em !important;
+    transition: none !important;
+    outline: none !important;
+    filter: none !important;
+  }
+  .buy-btn.disabled:hover,
+  .buy-btn.disabled:active,
+  .buy-btn.disabled:focus,
+  .buy-btn:disabled:hover,
+  .buy-btn:disabled:active,
+  .buy-btn:disabled:focus {
+    background: #e0e0e0 !important;
+    color: #aaa !important;
+    box-shadow: none !important;
+    transform: none !important;
+    animation: none !important;
+    outline: none !important;
+    filter: none !important;
+  }
+}
+@keyframes buyTipFloat {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(-8px); }
+}
+@keyframes buyTipFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 </style> 
