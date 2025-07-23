@@ -59,15 +59,11 @@
         <div v-if="!payType" class="pay-type-btns">
           <button class="pay-type-btn wx"
             @click="payType='wx'"
-            @mouseenter="hoverPay='wx'"
-            @mouseleave="hoverPay=null"
-            :class="{'pay-hover': hoverPay==='wx', 'pay-shrink': hoverPay==='zfb'}"
+            :class="{'pay-hover': payType==='wx'}"
           >微信支付</button>
           <button class="pay-type-btn zfb"
             @click="payType='zfb'"
-            @mouseenter="hoverPay='zfb'"
-            @mouseleave="hoverPay=null"
-            :class="{'pay-hover': hoverPay==='zfb', 'pay-shrink': hoverPay==='wx'}"
+            :class="{'pay-hover': payType==='zfb'}"
           >支付宝支付</button>
         </div>
         <div v-else>
@@ -458,6 +454,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
 }
 .pay-title {
   font-size: 1.4rem;
@@ -487,6 +487,7 @@ export default {
   .pay-modal-content {
     min-width: 0;
     max-width: 98vw;
+    width: 96vw;
     padding: 0.7em 0.1em 0.7em 0.1em;
   }
   .pay-title {
@@ -499,14 +500,19 @@ export default {
     height: auto;
   }
   .pay-type-btns {
-    flex-direction: column;
-    gap: 1em;
-    margin: 1em 0 1em 0;
+    flex-direction: row !important;
+    gap: 1em !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 1em 0 1em 0 !important;
   }
   .pay-type-btn {
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.7em 0;
+    width: 48% !important;
+    min-width: 0 !important;
+    font-size: 1rem !important;
+    padding: 0.7em 0 !important;
+    box-sizing: border-box !important;
   }
 }
 .pay-tip {
@@ -550,13 +556,16 @@ export default {
   background: #07c160;
 }
 .pay-type-btn.pay-hover {
-  transform: scale(1.15);
-  z-index: 2;
+  /* 只加阴影，不缩放 */
   box-shadow: 0 4px 24px #ff980099;
+  transform: none !important;
+  opacity: 1 !important;
+  z-index: 2;
 }
 .pay-type-btn.pay-shrink {
-  transform: scale(0.92);
-  opacity: 0.85;
+  /* 不缩小不变淡 */
+  transform: none !important;
+  opacity: 1 !important;
   z-index: 1;
 }
 .pay-type-btn:active {
