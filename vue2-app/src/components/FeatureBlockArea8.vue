@@ -1,9 +1,10 @@
 <template>
   <section class="feature-block">
     <div class="risk-reversal-badge">
-      <span class="badge-icon">🛡️</span>
+      <span class="badge-icon big">🛡️</span>
       <span class="badge-text">
-        <b>我们郑重承诺：</b>购买后30天内，若因我们的模板或指导问题导致您无法成功部署，我们将全额退款！
+        <b class="promise-strong">30天无忧退款 · 零风险承诺</b><br>
+        <span class="promise-highlight">只要部署不成功，30天内全额退款，承诺写进合同，真正让您“零顾虑”下单！</span>
       </span>
     </div>
     <div class="faq-section">
@@ -21,7 +22,14 @@
           <div class="faq-q">Q: 我的数据安全吗？</div>
           <div class="faq-a">A: 绝对安全。整个工具部署在您自己的N8N服务器上，所有数据都在您本地处理，我们不触碰您的任何业务数据。</div>
         </li>
+        <li class="faq-item">
+          <div class="faq-q">Q: 退款流程复杂吗？</div>
+          <div class="faq-a">A: 完全不复杂！只要符合承诺条件，联系客服即可极速退款。</div>
+        </li>
       </ul>
+      <div class="faq-risk-tip">
+        <span class="tip-icon">🔒</span> <b class="promise-strong">30天无忧退款 · 零风险下单</b>
+      </div>
     </div>
   </section>
 </template>
@@ -31,18 +39,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, #ff9800 0%, #ff5e62 100%);
-  border-radius: 28px;
-  box-shadow: 0 6px 32px 0 rgba(255,152,0,0.18), 0 0 0 10px rgba(255,224,240,0.18);
-  padding: 2em 3em;
+  background: linear-gradient(100deg, #ffe082 0%, #ffd54f 60%, #ff9800 100%);
+  border-radius: 2.5em;
+  padding: 2.2em 3.5em;
   margin: 0 auto 2.5em auto;
-  max-width: 900px;
-  font-size: 1.45rem;
+  max-width: 1100px;
+  font-size: 1.55rem;
   font-weight: bold;
   color: #fff;
-  border: 3px solid #ff9800;
+  border: none;
   gap: 1.3em;
   letter-spacing: 0.02em;
+  box-shadow: 0 2px 24px #ffd54f33;
   text-shadow: 0 2px 12px rgba(216,67,21,0.13);
 }
 .badge-icon {
@@ -55,6 +63,13 @@
   flex: 1 1 auto;
   text-align: left;
   line-height: 1.8;
+}
+.badge-desc {
+  display: block;
+  font-size: 1.08rem;
+  color: #fffde7;
+  margin-top: 0.5em;
+  font-weight: 400;
 }
 .faq-section {
   margin-top: 2.5em;
@@ -100,13 +115,51 @@
   transform: translateX(-50%);
   margin: 2.5em 0;
   box-sizing: border-box;
-  border: 3px solid transparent;
   border-radius: 18px;
-  background:
-    linear-gradient(white, white) padding-box,
-    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
-  box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
+  background: linear-gradient(135deg, #fffbe7 0%, #ffe082 40%, #ffd54f 80%, #ffe0b2 100%);
+  /* 与7区风格统一，温暖渐变 */
   padding: 2.2em 3.5em 1.6em 3.5em;
+}
+.faq-risk-tip {
+  margin-top: 2.2em;
+  text-align: center;
+  font-size: 1.18rem;
+  color: #d84315;
+  font-weight: bold;
+  background: #fffde7;
+  border-radius: 1.2em;
+  padding: 1em 1.5em;
+  display: inline-block;
+  box-shadow: 0 1px 8px #ffd54f33;
+}
+.tip-icon {
+  font-size: 1.3em;
+  vertical-align: middle;
+  margin-right: 0.3em;
+}
+.badge-icon.big {
+  font-size: 3.2em;
+  color: #ff9800;
+  filter: drop-shadow(0 4px 24px #ffd54f);
+  margin-right: 0.5em;
+}
+.promise-strong {
+  font-size: 1.45em;
+  color: #c62828;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+.promise-highlight {
+  color: #b71c1c;
+  background: rgba(255,255,255,0.92);
+  font-size: 1.18em;
+  font-weight: 900;
+  display: inline-block;
+  margin-top: 0.7em;
+  padding: 0.32em 1.1em;
+  border-radius: 1.2em;
+  box-shadow: 0 2px 8px #ffd54f33;
+  letter-spacing: 1.2px;
 }
 @media (max-width: 600px) {
   .feature-block {

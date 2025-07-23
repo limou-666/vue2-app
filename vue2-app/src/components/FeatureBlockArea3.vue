@@ -1,14 +1,14 @@
 <template>
   <section class="feature-block" :data-columns="columns">
     <div class="feature-title-bg">
-      <h2 class="section-title">{{ title }}</h2>
+      <h2 class="section-title"><span class="title-icon">📊</span>{{ title }}</h2>
     </div>
     <div class="section-block-content">
       <div class="section-block-grid">
         <div class="card" v-for="(item, idx) in items" :key="idx">
           <div class="card-inner">
-            <div class="card-label">{{ item.label }}</div>
-            <div class="card-text">{{ item.text }}</div>
+            <div class="card-label"><span class="label-icon">🔗</span>{{ item.label }}</div>
+            <div class="card-text"><span class="card-text-scroll">{{ item.text }}&nbsp;&nbsp;{{ item.text }}</span></div>
           </div>
         </div>
       </div>
@@ -31,17 +31,14 @@ export default {
 <style scoped>
 .feature-block {
   margin: 2.5em auto;
-  border: 3px solid transparent;
   border-radius: 2.5em;
-  /* background: linear-gradient(white, white) padding-box, linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box; */
-  box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
 }
 .feature-title-bg {
   width: 90vw;
   min-width: 320px;
   max-width: 100vw;
   margin: 0 auto 0.7rem auto;
-  background: linear-gradient(90deg, rgba(220,38,38,0.8) 0%, rgba(255,87,34,0.8) 100%);
+  background: linear-gradient(90deg, #e3f0ff 0%, #b2ebf2 100%);
   border-radius: 2.5em;
   padding: 1.1rem 1rem;
   display: flex;
@@ -49,61 +46,126 @@ export default {
   align-items: center;
   box-sizing: border-box;
 }
+.section-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #2196f3 0%, #00bcd4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 2px 8px #b2ebf2cc;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1.3;
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+  box-decoration-break: clone;
+  user-select: text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeInTitle 1.2s ease-in forwards;
+}
+.section-title .title-icon {
+  font-size: 2.1rem;
+  margin-right: 0.3em;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 8px #b2ebf2cc);
+}
+@keyframes fadeInTitle {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 .feature-block[data-columns='4'] .section-block-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
 }
+/* 移除小卡片内所有样式，重构为区域2风格 */
 .feature-block[data-columns='4'] .section-block-grid .card {
-  border-radius: 2.5em;
-  border: none;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(255,152,0,0.06);
-  margin: 0;
-  padding: 0.01em 0.05em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 160px;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 50%, #70e1f5 100%);
+  border-radius: 2.8em;
+  overflow: hidden;
+  position: relative;
+  opacity: 1;
+  transition: box-shadow 0.22s, transform 0.22s, opacity 0.22s;
+}
+.feature-block[data-columns='4'] .section-block-grid .card:hover {
+  transform: scale(1.06) translateY(-6px);
+  box-shadow: 0 0 0 0 #fff, 0 0 32px 8px #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13);
+  z-index: 2;
+}
+@keyframes cardGuard {
+  0% { box-shadow: 0 0 0 0 #fff, 0 0 0 0 #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13); }
+  60% { box-shadow: 0 0 0 16px #90caf9aa, 0 0 32px 8px #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13); }
+  100% { box-shadow: 0 0 0 0 #fff, 0 0 32px 8px #90caf9cc, 0 8px 32px 0 rgba(255,152,0,0.13); }
 }
 .feature-block[data-columns='4'] .section-block-grid .card-inner {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+  justify-content: flex-start;
+  padding: 0;
 }
 .feature-block[data-columns='4'] .section-block-grid .card-label {
+  width: 78%;
+  min-width: 120px;
+  max-width: 90%;
+  display: block;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(90deg, #b2ebf2 0%, #2196f3 100%);
   border-radius: 2.5em;
-  background: transparent;
-  flex: 0 0 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  padding: 0.32em 0.1em 0.32em 0.1em;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #01579b;
+  letter-spacing: 1.2px;
+  margin-top: 1.1em;
+  margin-bottom: 0.25em;
   text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ff9800;
+  box-shadow: 0 2px 12px 0 rgba(33,150,243,0.10);
+  position: relative;
+}
+.feature-block[data-columns='4'] .section-block-grid .card-label .label-icon {
+  font-size: 1.2em;
+  margin-right: 0.18em;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 8px #b2ebf2cc);
 }
 .feature-block[data-columns='4'] .section-block-grid .card-text {
-  border-radius: 2.5em;
-  background: transparent;
-  flex: 0 0 60%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-align: left;
-  font-size: 0.95rem;
-  color: #666;
-  line-height: 1.5;
+  font-size: 1.25rem;
+  color: #1565c0;
+  line-height: 1.6;
   word-break: break-all;
-  padding-left: 1.2em;
-  padding-right: 0.5em;
-  padding-top: 0.3em;
-  padding-bottom: 0.3em;
-  margin: 0 0.2em;
+  padding: 0.18em 1em 0.7em 1em;
+  background: transparent;
+  border-radius: 2.5em;
   box-sizing: border-box;
-  white-space: pre-line;
+  width: 100%;
+  margin-top: 0.25em;
+  margin-bottom: 0.2em;
+  text-align: left;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.feature-block[data-columns='4'] .section-block-grid .card-text-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  transition: transform 0.3s;
+  will-change: transform;
+  position: relative;
+  animation: scroll-text-marquee 12s linear infinite;
+}
+@keyframes scroll-text-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 @media (max-width: 900px) {
   .feature-block[data-columns='4'] .section-block-grid {

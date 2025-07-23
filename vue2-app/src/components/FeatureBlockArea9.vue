@@ -3,19 +3,24 @@
     <div class="area9-content">
       <div class="area9-highlight">
         <div class="area9-value">
-          一次错误的补货决策，损失的可能就是几万甚至几十万。而今天，只需一笔小小的投资，就能拥有一个永不疲倦的AI决策大脑。
+          <span class="area9-icon">⏰</span>
+          <b>限时限量 · 最后抢购机会！</b>
         </div>
         <div class="area9-urgency">
-          天使合伙人席位即将售罄，价格马上上涨。立即行动，锁定骨折优惠！
+          <span class="urgency-label">仅剩 <span class="urgency-num">3</span> 席</span>
+          <span class="urgency-timer">倒计时 <span class="timer-num">{{ countdown }}</span></span>
+        </div>
+        <div class="area9-desc">
+          一次错误的补货决策，损失的可能就是几万甚至几十万。现在下单，锁定骨折优惠，抓住最后机会！
         </div>
       </div>
-      <button class="area9-cta cta-mousemove"
+      <button class="area9-cta cta-mousemove pulse"
         @mousemove="onMove"
         @mouseleave="onLeave"
         @click="scrollToPay"
         ref="ctaBtn"
       >
-        <span class="cta-text" :style="ctaTextStyle">立即抢占最后席位，告别采购赌博！</span>
+        <span class="cta-text" :style="ctaTextStyle">立即支付，锁定优惠，下一秒可能就没了！</span>
       </button>
     </div>
   </section>
@@ -27,7 +32,10 @@ export default {
   data() {
     return {
       ctaOffset: { x: 0, y: 0 },
-      ctaActive: false
+      ctaActive: false,
+      countdown: '',
+      timer: null,
+      targetTime: new Date('2025-07-25T00:00:00').getTime()
     }
   },
   computed: {
@@ -38,7 +46,26 @@ export default {
       };
     }
   },
+  mounted() {
+    this.updateCountdown();
+    this.timer = setInterval(this.updateCountdown, 1000);
+  },
+  beforeDestroy() {
+    if (this.timer) clearInterval(this.timer);
+  },
   methods: {
+    updateCountdown() {
+      const now = Date.now();
+      let diff = Math.max(0, this.targetTime - now);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * 1000 * 60 * 60 * 24;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * 1000 * 60 * 60;
+      const minutes = Math.floor(diff / (1000 * 60));
+      diff -= minutes * 1000 * 60;
+      const seconds = Math.floor(diff / 1000);
+      this.countdown = `${days}天 ${hours.toString().padStart(2,'0')}小时${minutes.toString().padStart(2,'0')}分${seconds.toString().padStart(2,'0')}秒`;
+    },
     scrollToPay() {
       const area5 = document.getElementById('area5');
       if (area5) {
@@ -77,26 +104,20 @@ export default {
   transform: translateX(-50%);
   margin: 2.5em 0;
   box-sizing: border-box;
-  border: 3px solid transparent;
   border-radius: 18px;
-  background:
-    linear-gradient(white, white) padding-box,
-    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
-  box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
-  padding: 2.2em 3.5em 2.2em 3.5em;
+  background: linear-gradient(135deg, #fffbe7 0%, #ffe082 40%, #ffd54f 80%, #ffe0b2 100%);
+  /* 与7/8区统一，温暖渐变 */
 }
 .area9-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.2em;
+  gap: 0.5em;
 }
 .area9-highlight {
   background: linear-gradient(90deg, #fff3e0 0%, #ffe0b2 100%);
   border-radius: 18px;
-  border: 3px solid #ff9800;
-  box-shadow: 0 4px 24px 0 rgba(255,152,0,0.13);
   padding: 2em 2.5em;
   margin-bottom: 2.2em;
   display: flex;
@@ -107,32 +128,92 @@ export default {
   gap: 1.2em;
 }
 .area9-value {
-  font-size: 1.7rem;
-  color: #d84315;
-  font-weight: bold;
+  font-size: 2.1rem;
+  color: #c62828;
+  font-weight: 900;
   line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 0.2em;
+}
+.area9-icon {
+  font-size: 2.2em;
+  color: #ff3d00;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 8px #ffd54f);
 }
 .area9-urgency {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: #ff9800;
   font-weight: bold;
   line-height: 1.5;
+  margin-bottom: 0.2em;
+  display: flex;
+  align-items: center;
+  gap: 2.2em;
+}
+.urgency-label {
+  background: #ff3d00;
+  color: #fff;
+  font-size: 1.18em;
+  font-weight: 900;
+  border-radius: 1.2em;
+  padding: 0.18em 1.1em;
+  margin-right: 1.2em;
+  letter-spacing: 1.2px;
+  box-shadow: 0 2px 8px #ffd54f33;
+}
+.urgency-num {
+  font-size: 1.25em;
+  color: #ffd54f;
+  font-weight: 900;
+  margin: 0 0.2em;
+}
+.urgency-timer {
+  background: #fffde7;
+  color: #c62828;
+  font-size: 1.13em;
+  font-weight: bold;
+  border-radius: 1.2em;
+  padding: 0.18em 1.1em;
+  letter-spacing: 1.2px;
+  box-shadow: 0 2px 8px #ffd54f33;
+}
+.timer-num {
+  font-family: 'Consolas', monospace;
+  font-size: 1.18em;
+  color: #d84315;
+  font-weight: 900;
+  margin-left: 0.2em;
+}
+.area9-desc {
+  font-size: 1.18rem;
+  color: #d84315;
+  font-weight: 500;
+  margin-top: 1.1em;
+  margin-bottom: 0.2em;
 }
 .area9-cta {
-  background: linear-gradient(90deg, rgba(255,152,0,0.75) 0%, rgba(216,67,21,0.75) 100%);
+  background: linear-gradient(90deg, #ff3d00 0%, #ffd54f 100%);
   color: #fff;
-  font-size: 1.7rem;
-  font-weight: bold;
+  font-size: 2.1rem;
+  font-weight: 900;
   border: none;
-  border-radius: 16px;
-  padding: 1.3em 3.2em;
-  box-shadow: 0 2px 12px rgba(255,152,0,0.13);
+  border-radius: 2.2em;
+  padding: 1.5em 4.2em;
+  box-shadow: 0 6px 32px 0 #ff980099, 0 0 0 10px #ffd54f33;
   cursor: pointer;
-  margin-top: 1.2em;
-  transition: background 0.2s, box-shadow 0.2s;
-  letter-spacing: 0.02em;
+  margin-top: 0;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+  letter-spacing: 0.04em;
   overflow: hidden;
   position: relative;
+  animation: ctaPulse 1.2s infinite alternate cubic-bezier(.4,1.6,.6,1);
+}
+@keyframes ctaPulse {
+  0% { transform: scale(1); box-shadow: 0 6px 32px 0 #ff980099, 0 0 0 10px #ffd54f33; }
+  100% { transform: scale(1.06); box-shadow: 0 12px 48px 0 #ff3d00cc, 0 0 0 18px #ffd54faa; }
 }
 .cta-text {
   display: inline-block;

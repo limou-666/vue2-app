@@ -1,30 +1,28 @@
 <template>
   <section class="feature-block">
-    <div class="area7-title">我是谁？为什么你可以信任我？</div>
+    <div class="area7-title"><span class="area7-icon">🛡️</span>创始人权威推荐 <span class="founder-cert">官方认证</span></div>
     <div class="founder-section">
       <img class="founder-photo" src="/头像.jpg" alt="创始人照片" />
       <div class="founder-desc">
-        我是李俊熙，一个在深圳奋斗了8年的亚马逊老兵。我踩过你踩过的所有坑，也因此萌生了开发这款工具的想法...
+        <div class="founder-name">李俊熙 <span class="founder-role">（决胜单创始人/亚马逊8年老兵）</span></div>
+        <div class="founder-bio">8年亚马逊一线实战，服务过300+卖家，踩过你踩过的所有坑。<br>“决胜单”是我和团队用心打磨、亲自实测的AI决策工具，已帮助众多卖家避免库存损失、提升利润。<br><span class="founder-quote">“我承诺：每一位用户都能获得超预期的价值和服务！”</span></div>
+        <div class="founder-extra">已服务<span class="founder-highlight">300+</span>卖家 · 好评如潮</div>
       </div>
     </div>
     <div class="testimonials-section">
-      <div class="testimonials-title">早期用户评价</div>
-      <div class="carousel-wrap">
-        <div class="testimonials-carousel">
-          <div class="testimonial-card" v-if="testimonials.length">
-            <div class="testimonial-text">{{ testimonials[currentIndex].text }}</div>
-            <div class="testimonial-user">{{ testimonials[currentIndex].user }}</div>
+      <div class="testimonials-title"><span class="testimonials-icon">💬</span>真实用户评价</div>
+      <div class="testimonials-list">
+        <transition name="fade-batch" mode="out-in">
+          <div class="testimonials-row-wrap" :key="currentPage">
+            <div v-for="(item, idx) in visibleTestimonials" :key="(item.text || 'empty') + (item.user || idx) + currentPage" class="testimonial-card">
+              <div v-if="!item._empty">
+                <div class="testimonial-quote">“</div>
+                <div class="testimonial-text">{{ item.text }}</div>
+                <div class="testimonial-user">{{ item.user }}</div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="carousel-dots">
-          <span
-            v-for="(item, idx) in testimonials"
-            :key="idx"
-            class="carousel-dot"
-            :class="{ active: idx === currentIndex }"
-            @click="goTo(idx)"
-          ></span>
-        </div>
+        </transition>
       </div>
     </div>
   </section>
@@ -36,64 +34,110 @@ export default {
   data() {
     return {
       testimonials: [
-        { text: '“这个工具太棒了，简直是我们采购部门的福音！”', user: '- 深圳Anker公司 产品经理' },
-        { text: '“极大提升了我们的补货决策效率，强烈推荐！”', user: '- 深圳跨境电商卖家 Lily' },
-        { text: '“部署简单，数据分析很到位，团队都在用。”', user: '- 深圳某3C品牌运营总监' },
-        { text: '“AI预警功能帮我们避免了大额库存损失。”', user: '- 广州亚马逊卖家 Tony' },
-        { text: '“客服响应很快，技术支持很专业。”', user: '- 早期体验用户 王先生' }
+        { text: '“用了决胜单后，补货再也不怕拍脑袋，AI分析很专业！”', user: '深圳Anker公司 产品经理' },
+        { text: '“极大提升了我们的补货决策效率，强烈推荐！”', user: '深圳跨境电商卖家 Lily' },
+        { text: '“部署简单，数据分析很到位，团队都在用。”', user: '深圳某3C品牌运营总监' },
+        { text: '“AI预警功能帮我们避免了大额库存损失。”', user: '广州亚马逊卖家 Tony' },
+        { text: '“客服响应很快，技术支持很专业。”', user: '早期体验用户 王先生' },
+        { text: '“每次补货前都用决胜单，心里踏实多了！”', user: '深圳3C卖家 张总' },
+        { text: '“数据报告很直观，团队决策效率提升一大截。”', user: '广州运营总监 李女士' },
+        { text: '“AI让我们补货更科学，库存周转率提升了30%！”', user: '杭州跨境卖家 赵先生' },
+        { text: '“功能很全，性价比高，值得推荐！”', user: '宁波卖家 王总' },
+        { text: '“补货决策再也不拍脑袋了，感谢决胜单！”', user: '义乌卖家 小李' },
+        // 新增8条
+        { text: '“AI预测销量很准，库存压力小多了！”', user: '深圳智能家居卖家 刘小姐' },
+        { text: '“界面友好，操作简单，团队新人也能快速上手。”', user: '东莞运营主管 陈先生' },
+        { text: '“报表一目了然，老板每周都要看！”', user: '广州公司助理 小王' },
+        { text: '“节省了大量人工分析时间，效率翻倍！”', user: '佛山灯饰卖家 赵总' },
+        { text: '“客服很耐心，遇到问题都能及时解决。”', user: '深圳卖家 小陈' },
+        { text: '“补货建议很实用，避免了断货和积压。”', user: '上海跨境卖家 李总' },
+        { text: '“数据对接很顺畅，和ERP系统兼容。”', user: '深圳IT负责人 王工' },
+        { text: '“每次新品上线都用决胜单，效果很棒！”', user: '广州新品运营 小杨' }
       ],
-      currentIndex: 0,
+      currentPage: 0,
       timer: null
     }
   },
+  computed: {
+    visibleTestimonials() {
+      // 每次显示9条，自动分页
+      const pageSize = 9;
+      const total = this.testimonials.length;
+      const pageCount = Math.ceil(total / pageSize);
+      const start = this.currentPage * pageSize;
+      let arr = this.testimonials.slice(start, start + pageSize);
+      // 不足9条补空
+      while (arr.length < 9) arr.push({ text: '', user: '', _empty: true });
+      return arr;
+    }
+  },
   mounted() {
-    this.startCarousel();
+    this.timer = setInterval(() => {
+      const pageSize = 9;
+      const pageCount = Math.ceil(this.testimonials.length / pageSize);
+      this.currentPage = (this.currentPage + 1) % pageCount;
+    }, 5000);
   },
   beforeDestroy() {
     if (this.timer) clearInterval(this.timer);
-  },
-  methods: {
-    startCarousel() {
-      this.timer = setInterval(() => {
-        this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
-      }, 3000);
-    },
-    goTo(idx) {
-      this.currentIndex = idx;
-    }
   }
 }
 </script>
 
 <style scoped>
 .area7-title {
-  font-size: 2.3rem;
-  font-weight: bold;
-  color: #fff;
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #d84315;
   text-align: center;
   margin-bottom: 2em;
   line-height: 1.3;
-  background: linear-gradient(90deg, #ff9800 0%, #d84315 100%);
-  border-radius: 18px;
+  background: linear-gradient(90deg, #fffde7 0%, #ffe082 100%);
+  border-radius: 1.5em;
   padding: 1.1em 0.5em 1em 0.5em;
-  box-shadow: 0 4px 24px 0 rgba(255,152,0,0.13);
   letter-spacing: 0.02em;
-  text-shadow: 0 2px 8px rgba(216,67,21,0.10);
-  display: inline-block;
+  text-shadow: 0 2px 8px #ffd54f55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1em;
   width: 100%;
+}
+.area7-icon {
+  font-size: 1.5em;
+  margin-right: 0.2em;
+  vertical-align: middle;
+}
+.founder-cert {
+  background: #07c160;
+  color: #fff;
+  border-radius: 1em;
+  font-size: 1.05em;
+  font-weight: 900;
+  padding: 0.13em 0.7em;
+  margin-left: 1.1em;
+  box-shadow: 0 1px 4px #07c16033;
+  letter-spacing: 1.1px;
 }
 .founder-section {
   display: flex;
   align-items: center;
   gap: 2.2em;
   margin-bottom: 2.5em;
+  background: #fff7e6;
+  border-radius: 1.5em;
+  padding: 1.2em 2em;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .founder-photo {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 2px 12px rgba(255,152,0,0.10);
+  box-shadow: 0 2px 12px #ffd54f33;
   background: #ffe0b2;
 }
 .founder-desc {
@@ -102,12 +146,50 @@ export default {
   color: #333;
   line-height: 1.7;
   font-weight: 500;
-  background: #fff7e6;
-  border-radius: 12px;
-  padding: 1.1em 1.5em;
-  margin: 0.2em 0.2em 0.2em 0;
-  box-shadow: 0 2px 8px rgba(255,152,0,0.07);
-  border: 1.5px solid #ffe0b2;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.founder-name {
+  font-size: 1.25em;
+  font-weight: 900;
+  color: #d84315;
+  margin-bottom: 0.1em;
+}
+.founder-role {
+  color: #ff9800;
+  font-size: 0.95em;
+  font-weight: 700;
+  margin-left: 0.5em;
+}
+.founder-bio {
+  font-size: 1.05em;
+  color: #333;
+  line-height: 1.7;
+}
+.founder-quote {
+  color: #ff9800;
+  font-size: 1.08em;
+  font-weight: 700;
+  margin-top: 0.5em;
+  display: block;
+}
+.founder-extra {
+  color: #388e3c;
+  font-size: 1.05em;
+  font-weight: 700;
+  margin-top: 0.3em;
+}
+.founder-highlight {
+  color: #ff9800;
+  font-size: 1.15em;
+  font-weight: 900;
 }
 .testimonials-section {
   margin-top: 2.5em;
@@ -118,50 +200,84 @@ export default {
   color: #ff9800;
   margin-bottom: 1.2em;
   text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  justify-content: center;
 }
-.carousel-wrap {
-  background: linear-gradient(120deg, #ffe0b2 0%, #ffe0f0 100%);
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(255,152,0,0.08);
-  padding: 2em 2.5em 1.5em 2.5em;
+.testimonials-icon {
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+.testimonials-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  max-width: 420px;
-  margin: 0 auto;
-}
-.testimonials-carousel {
+  align-items: center;
+  border-radius: 1.5em;
+  background: #fff7e6;
+  padding: 2em 2.5em 1.5em 2.5em;
+  max-width: 1100px;
   width: 100%;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.testimonials-row-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1.2em 2.2em;
+  width: 100%;
+  justify-items: center;
+  align-items: stretch;
 }
 .testimonial-card {
+  min-width: 220px;
+  max-width: 320px;
+  margin: 0;
+}
+.empty-card {
   background: none;
-  border-radius: 0;
+  border: none;
   box-shadow: none;
-  padding: 0;
-  min-width: 0;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+.fade-in-enter-active, .fade-in-leave-active {
+  transition: all 0.7s cubic-bezier(.4,1.6,.6,1);
+}
+.fade-in-enter, .fade-in-leave-to {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.testimonial-card.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.7s forwards;
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.testimonial-quote {
+  font-size: 2.2em;
+  color: #ff9800;
+  position: absolute;
+  left: 0.2em;
+  top: 0.1em;
+  opacity: 0.18;
+  pointer-events: none;
 }
 .testimonial-text {
-  font-size: 1.15rem;
+  font-size: 1.13rem;
   color: #d84315;
   margin-bottom: 1.2em;
-  text-align: center;
-  font-weight: 500;
+  text-align: left;
+  font-weight: 700;
+  z-index: 2;
 }
 .testimonial-user {
   font-size: 1rem;
   color: #888;
-  text-align: center;
+  text-align: left;
+  z-index: 2;
 }
 .feature-block {
   width: 90vw;
@@ -171,12 +287,9 @@ export default {
   transform: translateX(-50%);
   margin: 2.5em 0;
   box-sizing: border-box;
-  border: 3px solid transparent;
   border-radius: 18px;
-  background:
-    linear-gradient(white, white) padding-box,
-    linear-gradient(120deg, #ffe0f0 0%, #ffe9b2 100%) border-box;
-  box-shadow: 0 4px 32px 0 rgba(255,192,203,0.10), 0 0 0 8px rgba(255,224,240,0.12);
+  background: linear-gradient(135deg, #fffbe7 0%, #ffe082 40%, #ffd54f 80%, #ffe0b2 100%);
+  /* 温暖的金色渐变，突出信任和权威 */
   padding: 2.2em 3.5em 1.6em 3.5em;
 }
 @media (max-width: 600px) {
@@ -280,5 +393,12 @@ export default {
     gap: 0.4em;
     margin-top: 0.7em;
   }
+}
+.fade-batch-enter-active, .fade-batch-leave-active {
+  transition: opacity 0.7s cubic-bezier(.4,1.6,.6,1), transform 0.7s cubic-bezier(.4,1.6,.6,1);
+}
+.fade-batch-enter, .fade-batch-leave-to {
+  opacity: 0;
+  transform: scale(0.96);
 }
 </style> 
