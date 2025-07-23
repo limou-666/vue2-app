@@ -1,20 +1,45 @@
 <template>
   <section class="feature-block">
-    <div class="area7-title"><span class="area7-icon">🛡️</span>创始人权威推荐 <span class="founder-cert">官方认证</span></div>
+    <div class="area7-title">
+      <div class="area7-title-row1"><span class="area7-icon">🛡️</span>创始人权威推荐</div>
+      <div class="founder-cert">官方认证</div>
+    </div>
     <div class="founder-section">
-      <img class="founder-photo" src="/头像.jpg" alt="创始人照片" />
+      <div class="founder-header">
+        <img class="founder-photo" src="/头像.jpg" alt="创始人照片" />
+        <div class="founder-info">
+          <div class="founder-name">李俊熙</div>
+          <div class="founder-role">（决胜单创始人/亚马逊8年老兵）</div>
+          <div class="founder-bio">8年亚马逊一线实战，服务过300+卖家，踩过你踩过的所有坑。<br>“决胜单”是我和团队用心打磨、亲自实测的AI决策工具，已帮助众多卖家避免库存损失、提升利润。</div>
+        </div>
+      </div>
+      <div class="founder-bio-box">8年亚马逊一线实战，服务过300+卖家，踩过你踩过的所有坑。<br>“决胜单”是我和团队用心打磨、亲自实测的AI决策工具，已帮助众多卖家避免库存损失、提升利润。</div>
       <div class="founder-desc">
-        <div class="founder-name">李俊熙 <span class="founder-role">（决胜单创始人/亚马逊8年老兵）</span></div>
-        <div class="founder-bio">8年亚马逊一线实战，服务过300+卖家，踩过你踩过的所有坑。<br>“决胜单”是我和团队用心打磨、亲自实测的AI决策工具，已帮助众多卖家避免库存损失、提升利润。<br><span class="founder-quote">“我承诺：每一位用户都能获得超预期的价值和服务！”</span></div>
+        <span class="founder-quote">“我承诺：每一位用户都能获得超预期的价值和服务！”</span>
+      </div>
+      <div class="founder-footer">
         <div class="founder-extra">已服务<span class="founder-highlight">300+</span>卖家 · 好评如潮</div>
       </div>
     </div>
     <div class="testimonials-section">
       <div class="testimonials-title"><span class="testimonials-icon">💬</span>真实用户评价</div>
-      <div class="testimonials-list">
-        <transition name="fade-batch" mode="out-in">
-          <div class="testimonials-row-wrap" :key="currentPage">
-            <div v-for="(item, idx) in visibleTestimonials" :key="(item.text || 'empty') + (item.user || idx) + currentPage" class="testimonial-card">
+      <div class="testimonials-list mobile-scrollable">
+        <template v-if="isDesktop">
+          <transition name="fade-batch-desktop" mode="out-in">
+            <div class="testimonials-row-wrap" :key="currentPage">
+              <div v-for="(item, idx) in visibleTestimonialsDesktop" :key="(item.text || 'empty') + (item.user || idx) + currentPage" class="testimonial-card">
+                <div v-if="!item._empty">
+                  <div class="testimonial-quote">“</div>
+                  <div class="testimonial-text">{{ item.text }}</div>
+                  <div class="testimonial-user">{{ item.user }}</div>
+                </div>
+              </div>
+            </div>
+          </transition>
+        </template>
+        <template v-else>
+          <div class="testimonials-row-wrap-mobile">
+            <div v-for="(item, idx) in visibleTestimonialsMobile" :key="(item.text || 'empty') + (item.user || idx)" class="testimonial-card">
               <div v-if="!item._empty">
                 <div class="testimonial-quote">“</div>
                 <div class="testimonial-text">{{ item.text }}</div>
@@ -22,7 +47,7 @@
               </div>
             </div>
           </div>
-        </transition>
+        </template>
       </div>
     </div>
   </section>
@@ -44,7 +69,6 @@ export default {
         { text: '“AI让我们补货更科学，库存周转率提升了30%！”', user: '杭州跨境卖家 赵先生' },
         { text: '“功能很全，性价比高，值得推荐！”', user: '宁波卖家 王总' },
         { text: '“补货决策再也不拍脑袋了，感谢决胜单！”', user: '义乌卖家 小李' },
-        // 新增8条
         { text: '“AI预测销量很准，库存压力小多了！”', user: '深圳智能家居卖家 刘小姐' },
         { text: '“界面友好，操作简单，团队新人也能快速上手。”', user: '东莞运营主管 陈先生' },
         { text: '“报表一目了然，老板每周都要看！”', user: '广州公司助理 小王' },
@@ -55,12 +79,17 @@ export default {
         { text: '“每次新品上线都用决胜单，效果很棒！”', user: '广州新品运营 小杨' }
       ],
       currentPage: 0,
-      timer: null
+      timer: null,
+      mobileScrollIndex: 0
     }
   },
   computed: {
-    visibleTestimonials() {
-      // 每次显示9条，自动分页
+    isDesktop() {
+      return window.innerWidth > 600;
+    },
+    visibleTestimonialsDesktop() {
+      // 桌面端：每次显示9条，自动分页
+      if (!this.isDesktop) return [];
       const pageSize = 9;
       const total = this.testimonials.length;
       const pageCount = Math.ceil(total / pageSize);
@@ -69,42 +98,101 @@ export default {
       // 不足9条补空
       while (arr.length < 9) arr.push({ text: '', user: '', _empty: true });
       return arr;
+    },
+    visibleTestimonialsMobile() {
+      if (this.isDesktop) return [];
+      // 移动端：展示所有评论
+      return this.testimonials;
+    },
+    scrollbarThumbStyle() {
+      if (window.innerWidth > 600) return {};
+      const total = this.testimonials.length;
+      const visible = 2;
+      const percent = visible / total;
+      const top = (this.mobileScrollIndex / total) * 100;
+      return {
+        height: `${percent * 100}%`,
+        top: `${top}%`
+      };
     }
   },
   mounted() {
     this.timer = setInterval(() => {
+      if (!this.isDesktop) return;
       const pageSize = 9;
       const pageCount = Math.ceil(this.testimonials.length / pageSize);
       this.currentPage = (this.currentPage + 1) % pageCount;
-    }, 5000);
+    }, 7000); // 柔滑切换，7秒一批
+    window.addEventListener('resize', this.handleResize);
+    if (window.innerWidth <= 600) {
+      const list = document.querySelector('.mobile-scrollable');
+      if (list) {
+        list.addEventListener('touchstart', this.handleTouchStart, { passive: false });
+        list.addEventListener('touchmove', this.handleTouchMove, { passive: false });
+      }
+    }
   },
   beforeDestroy() {
     if (this.timer) clearInterval(this.timer);
+    window.removeEventListener('resize', this.handleResize);
+    if (window.innerWidth <= 600) {
+      const list = document.querySelector('.mobile-scrollable');
+      if (list) {
+        list.removeEventListener('touchstart', this.handleTouchStart);
+        list.removeEventListener('touchmove', this.handleTouchMove);
+      }
+    }
+  },
+  methods: {
+    handleTouchStart(e) {
+      this._touchStartY = e.touches[0].clientY;
+    },
+    handleTouchMove(e) {
+      const deltaY = e.touches[0].clientY - this._touchStartY;
+      if (Math.abs(deltaY) > 40) {
+        if (deltaY < 0 && this.mobileScrollIndex < this.testimonials.length - 2) {
+          this.mobileScrollIndex++;
+        } else if (deltaY > 0 && this.mobileScrollIndex > 0) {
+          this.mobileScrollIndex--;
+        }
+        this._touchStartY = e.touches[0].clientY;
+      }
+    },
+    handleResize() {
+      this.$forceUpdate();
+    }
   }
 }
 </script>
 
 <style scoped>
 .area7-title {
-  font-size: 2.1rem;
-  font-weight: 900;
-  color: #d84315;
-  text-align: center;
-  margin-bottom: 2em;
-  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
   background: linear-gradient(90deg, #fffde7 0%, #ffe082 100%);
   border-radius: 1.5em;
   padding: 1.1em 0.5em 1em 0.5em;
+  margin-bottom: 2em;
+}
+.area7-title-row1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #d84315;
+  text-align: center;
+  line-height: 1.3;
   letter-spacing: 0.02em;
   text-shadow: 0 2px 8px #ffd54f55;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.1em;
-  width: 100%;
+  gap: 0.5em;
 }
 .area7-icon {
-  font-size: 1.5em;
+  font-size: 2.5em;
   margin-right: 0.2em;
   vertical-align: middle;
 }
@@ -112,25 +200,35 @@ export default {
   background: #07c160;
   color: #fff;
   border-radius: 1em;
-  font-size: 1.05em;
+  font-size: 1.25em;
   font-weight: 900;
-  padding: 0.13em 0.7em;
-  margin-left: 1.1em;
+  padding: 0.18em 1.2em;
+  margin: 0 auto;
   box-shadow: 0 1px 4px #07c16033;
   letter-spacing: 1.1px;
+  text-align: center;
+  display: inline-block;
 }
 .founder-section {
   display: flex;
-  align-items: center;
-  gap: 2.2em;
+  flex-direction: column;
+  gap: 1.2em;
   margin-bottom: 2.5em;
   background: #fff7e6;
   border-radius: 1.5em;
-  padding: 1.2em 2em;
+  padding: 1.2em 2.5em;
   max-width: 1200px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
+}
+.founder-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5em;
+  width: 100%;
 }
 .founder-photo {
   width: 120px;
@@ -140,21 +238,13 @@ export default {
   box-shadow: 0 2px 12px #ffd54f33;
   background: #ffe0b2;
 }
-.founder-desc {
-  flex: 1 1 auto;
-  font-size: 1.18rem;
-  color: #333;
-  line-height: 1.7;
-  font-weight: 500;
-  background: none;
-  border-radius: 0;
-  padding: 0;
-  margin: 0;
-  box-shadow: none;
-  border: none;
+.founder-info {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .founder-name {
   font-size: 1.25em;
@@ -172,6 +262,39 @@ export default {
   font-size: 1.05em;
   color: #333;
   line-height: 1.7;
+  margin-top: 0.2em;
+}
+.founder-bio-box {
+  border: 2px solid #fff;
+  border-radius: 1.2em;
+  background: #fffefb;
+  color: #333;
+  font-size: 0.92rem;
+  padding: 0.8em 1em;
+  margin: 0.7em 0 0.7em 0;
+  line-height: 1.7;
+  box-shadow: 0 2px 8px #ffd54f22;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+.founder-desc {
+  flex: 1 1 auto;
+  font-size: 1.18rem;
+  color: #333;
+  line-height: 1.7;
+  font-weight: 500;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .founder-quote {
   color: #ff9800;
@@ -185,6 +308,11 @@ export default {
   font-size: 1.05em;
   font-weight: 700;
   margin-top: 0.3em;
+}
+.founder-footer {
+  margin-top: 0.5em;
+  text-align: left;
+  width: 100%;
 }
 .founder-highlight {
   color: #ff9800;
@@ -216,11 +344,12 @@ export default {
   align-items: center;
   border-radius: 1.5em;
   background: #fff7e6;
-  padding: 2em 2.5em 1.5em 2.5em;
-  max-width: 1100px;
+  padding: 1.2em 5vw 1.2em 5vw;
+  max-width: 90vw;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
 }
 .testimonials-row-wrap {
   display: grid;
@@ -266,7 +395,7 @@ export default {
   pointer-events: none;
 }
 .testimonial-text {
-  font-size: 1.13rem;
+  font-size: 0.98rem;
   color: #d84315;
   margin-bottom: 1.2em;
   text-align: left;
@@ -274,10 +403,13 @@ export default {
   z-index: 2;
 }
 .testimonial-user {
-  font-size: 1rem;
+  font-size: 0.78rem;
   color: #888;
   text-align: left;
   z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .feature-block {
   width: 90vw;
@@ -365,6 +497,59 @@ export default {
   .testimonials-list {
     padding: 1em 0.3em 0.7em 0.3em;
   }
+  .founder-bio-box {
+    border: 2px solid #fff;
+    border-radius: 1.2em;
+    background: #fffefb;
+    color: #333;
+    font-size: 0.92rem;
+    padding: 0.8em 1em;
+    margin: 0.7em 0 0.7em 0;
+    line-height: 1.7;
+    box-shadow: 0 2px 8px #ffd54f22;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .founder-footer {
+    margin-top: 0.5em;
+    text-align: left;
+    width: 100%;
+  }
+  .founder-desc {
+    margin-bottom: 0.2em !important;
+  }
+  .founder-info .founder-bio {
+    display: none !important;
+  }
+}
+@media (min-width: 601px) {
+  .founder-info .founder-name {
+    display: inline-block !important;
+  }
+  .founder-info .founder-role {
+    display: inline-block !important;
+    font-size: 0.95em;
+    color: #ff9800;
+    margin-left: 0.5em;
+    font-weight: 700;
+  }
+  .founder-bio-box {
+    display: none !important;
+  }
+  .founder-info .founder-bio {
+    display: block !important;
+    margin-top: 0.3em;
+    font-size: 1.05em;
+    color: #333;
+    line-height: 1.7;
+  }
+  .testimonial-text {
+    font-size: 1.22rem;
+  }
+  .testimonial-user {
+    font-size: 0.98rem;
+  }
 }
 .carousel-dots {
   display: flex;
@@ -403,5 +588,152 @@ export default {
 .fade-batch-enter, .fade-batch-leave-to {
   opacity: 0;
   transform: scale(0.96);
+}
+@media (min-width: 601px) {
+  .testimonials-row-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.2em 2.2em;
+    width: 100%;
+    justify-items: center;
+    align-items: stretch;
+    min-height: 420px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 320px;
+    height: 120px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 1.2em;
+    box-shadow: 0 2px 8px #ffd54f22;
+    padding: 1em 1.2em;
+    margin: 0;
+  }
+}
+.fade-batch-desktop-enter-active, .fade-batch-desktop-leave-active {
+  transition: opacity 0.7s cubic-bezier(.4,1.6,.6,1);
+}
+.fade-batch-desktop-enter, .fade-batch-desktop-leave-to {
+  opacity: 0;
+}
+@media (max-width: 600px) {
+  .area7-title-row1 {
+    font-size: 1.35rem !important;
+  }
+  .area7-icon {
+    font-size: 1.5em !important;
+  }
+  .founder-cert {
+    font-size: 1em !important;
+    padding: 0.13em 0.7em !important;
+  }
+}
+@media (max-width: 600px) {
+  .founder-info .founder-name {
+    font-size: 1.08em !important;
+    margin-bottom: 0.08em !important;
+  }
+  .founder-info .founder-role {
+    display: block !important;
+    font-size: 0.68em !important;
+    color: #ff9800 !important;
+    margin: 0 0 0.12em 0 !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .founder-info .founder-bio {
+    display: none !important;
+  }
+}
+@media (max-width: 600px) {
+  .testimonials-row-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.7em !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+  .testimonial-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    background: #fff;
+    border-radius: 1.2em;
+    box-shadow: 0 2px 8px #ffd54f22;
+    padding: 1em 1.2em;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+  .testimonial-text {
+    font-size: 1.02rem !important;
+    color: #d84315 !important;
+    margin-bottom: 0.7em !important;
+    text-align: left !important;
+    font-weight: 700 !important;
+    word-break: break-all !important;
+    line-height: 1.6 !important;
+    white-space: pre-line !important;
+  }
+  .testimonial-user {
+    font-size: 0.82rem !important;
+    color: #888 !important;
+    text-align: left !important;
+    font-weight: 500 !important;
+    margin-top: 0.1em !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: initial !important;
+  }
+}
+@media (max-width: 600px) {
+  .testimonials-row-wrap {
+    max-height: 260px;
+    overflow: hidden;
+  }
+}
+@media (max-width: 600px) {
+  .mobile-scrollable {
+    max-height: 170px;
+    min-height: 85px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+  .testimonials-row-wrap-mobile {
+    min-height: 85px;
+    max-height: 170px;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+  .fade-slide-enter-active, .fade-slide-leave-active {
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-slide-enter, .fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  /* 移除自定义滚动条样式 */
+  .mobile-scrollbar, .mobile-scrollbar-thumb { display: none !important; }
 }
 </style> 

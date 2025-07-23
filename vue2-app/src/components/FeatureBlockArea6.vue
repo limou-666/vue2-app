@@ -109,11 +109,11 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     min-width: 0;
-    margin: 2.5em 0;
+    margin: 1.2em 0 !important;
     padding-left: 0.7em;
     padding-right: 0.7em;
-    padding-top: 1.1em;
-    padding-bottom: 1em;
+    padding-top: 0.7em !important;
+    padding-bottom: 0.7em !important;
   }
 }
 .area6-header {
@@ -528,5 +528,22 @@ export default {
   margin: 0 auto;
   position: relative;
   z-index: 2;
+}
+@media (max-width: 600px) {
+  .promise-list li {
+    font-size: 0.72em !important;
+    padding: 0.18em 0.5em !important;
+    border-radius: 0.7em !important;
+    margin-bottom: 0.28em !important;
+  }
+  .promise-list {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+  }
+  .feature-block {
+    padding-top: 0.28em !important;
+    padding-bottom: 0.28em !important;
+    margin: 0.7em 0 !important;
+  }
 }
 </style> 
